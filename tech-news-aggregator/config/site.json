@@ -1,0 +1,35 @@
+{
+  "site": {
+    "name": "TechPulse Daily",
+    "description": "AI-curated tech news for busy professionals. Get quality insights for meaningful conversations.",
+    "url": "https://techpulse-daily.com",
+    "author": "TechPulse Team",
+    "language": "en",
+    "logo": "/images/techpulsedaily.png",
+    "logoAlt": "TechPulse Daily - AI-Curated Tech News",
+    "favicon": "/images/favicon.ico",
+    "brandColors": {
+      "primary": "#00D4AA",
+      "primaryDark": "#1A4B47",
+      "primaryLight": "#4DE8C7",
+      "backgroundDark": "#1E3A3A",
+      "textWhite": "#FFFFFF",
+      "textLight": "#E0F4F3"
+    }
+  },
+  "seo": {
+    "titleTemplate": "%s | TechPulse Daily",
+    "defaultTitle": "TechPulse Daily - AI-Curated Tech News",
+    "defaultDescription": "Stay ahead of the tech curve with AI-curated news summaries perfect for water cooler conversations.",
+    "keywords": ["tech news", "AI news", "technology updates", "artificial intelligence", "machine learning", "startup news", "techpulse daily", "tech aggregation"],
+    "ogImage": "/images/techpulsedaily-og.png"
+  },
+  "social": {
+    "twitter": "@techpulsedaily",
+    "linkedin": "company/techpulsedaily"
+  },
+  "admin": {
+    "password": "REPLACE_WITH_ENV_VARIABLE",
+    "sessionTimeout": 3600
+  }
+}

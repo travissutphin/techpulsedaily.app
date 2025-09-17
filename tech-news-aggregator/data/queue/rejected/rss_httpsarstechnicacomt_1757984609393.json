@@ -1,0 +1,43 @@
+{
+  "id": "rss_httpsarstechnicacomt",
+  "title": "Internet Archive’s big battle with music publishers ends in settlement",
+  "content": "\n                            <p>A settlement has been reached in a lawsuit where <a href=\"https://arstechnica.com/tech-policy/2023/08/record-labels-sue-internet-archive-for-digitizing-obsolete-vintage-records/\">music publishers sued the Internet Archive</a> over the Great 78 Project, an effort to preserve early music recordings that only exist on brittle shellac records.</p>\n<p>No details of the settlement have so far been released, but a <a href=\"https://cdn.arstechnica.net/wp-content/uploads/2025/09/UMG-v-Internet-Archive-Joint-Notice-of-Settlement-9-15-25.pdf\">court filing</a> on Monday confirmed that the Internet Archive and UMG Recordings, Capitol Records, Sony Music Entertainment, and other record labels \"have settled this matter.\" More details may come in the next 45 days, when parties must submit filings to officially dismiss the lawsuit, but it's unlikely the settlement amount will be publicly disclosed.</p>\n<p>Days before the settlement was announced, record labels had indicated that everyone but the Internet Archive and its founder, Brewster Kahle, had agreed to sign a joint settlement, seemingly including the Great 78 Project's recording engineer George Blood, who was also a target of the litigation. But in the days since, IA has gotten on board, posting a <a href=\"https://blog.archive.org/2025/09/15/an-update-on-the-great-78s-lawsuit/\">blog</a> confirming that \"the parties have reached a confidential resolution of all claims and will have no further public comment on this matter.\"</p><p><a href=\"https://arstechnica.com/tech-policy/2025/09/internet-archives-big-battle-with-music-publishers-ends-in-settlement/\">Read full article</a></p>\n<p><a href=\"https://arstechnica.com/tech-policy/2025/09/internet-archives-big-battle-with-music-publishers-ends-in-settlement/#comments\">Comments</a></p>\n\n                        ",
+  "url": "https://arstechnica.com/tech-policy/2025/09/internet-archives-big-battle-with-music-publishers-ends-in-settlement/",
+  "source": "Ars Technica",
+  "sourceType": "rss",
+  "author": "\n                    Ashley Belanger\n                ",
+  "publishedAt": "2025-09-15T20:52:01.000Z",
+  "scrapedAt": "2025-09-16T01:02:27.170Z",
+  "score": 88,
+  "engagement": {
+    "shares": 0
+  },
+  "tags": [
+    "ai"
+  ],
+  "qualityScore": 8,
+  "summary": "Key Takeaway: The Internet Archive has reached a confidential settlement with major music publishers over its efforts to digitize and preserve early music recordings.\n\nWhy it Matters: The settlement ends a high-profile legal battle that threatened the Internet Archive's mission to provide universal access to knowledge, including through initiatives like the Great 78 Project to preserve vintage recordings.\n\nBrief Context: The music publishers had sued the Internet Archive over the Great 78 Project, claiming copyright infringement. The settlement, while keeping the details confidential, allows the Internet Archive to continue its work of digitizing and preserving these historical recordings.",
+  "faq": [
+    {
+      "question": "What was the Great 78 Project?",
+      "answer": "The Great 78 Project was an effort by the Internet Archive to preserve early music recordings that only exist on brittle shellac records. The goal was to digitize and make these historical recordings accessible to the public."
+    },
+    {
+      "question": "Why did music publishers sue the Internet Archive over the Great 78 Project?",
+      "answer": "The music publishers, including UMG Recordings, Capitol Records, and Sony Music Entertainment, sued the Internet Archive because they claimed the digitization and distribution of these recordings violated their copyrights. They argued the Internet Archive did not have the rights to make these recordings publicly available."
+    },
+    {
+      "question": "How did the lawsuit between the Internet Archive and music publishers get resolved?",
+      "answer": "fter a lengthy legal battle, the Internet Archive and the music publishers reached a confidential settlement agreement. No details about the settlement terms have been publicly disclosed, but the lawsuit has been dismissed and the parties will have no further public comment on the matter."
+    },
+    {
+      "question": "What impact will this settlement have on the Internet Archive's ability to preserve and provide access to historical recordings in the future?",
+      "answer": "The settlement likely places some restrictions or limitations on the Internet Archive's ability to digitize and distribute copyrighted music recordings going forward. However, the confidential nature of the agreement makes it unclear exactly how this will impact the Internet Archive's future preservation efforts."
+    },
+    {
+      "question": "Why is this settlement between the Internet Archive and music publishers significant?",
+      "answer": "This case highlights the ongoing tensions between digital preservation efforts and the rights of copyright holders. The settlement represents a compromise, but it also underscores the challenges cultural institutions like the Internet Archive face in balancing public access with respecting intellectual property rights. The outcome of this case could set precedents for similar disputes in the future."
+    }
+  ],
+  "isApproved": true
+}

@@ -1,0 +1,45 @@
+{
+  "id": "reddit_1nh32rj",
+  "title": "Apex hand, strong fingers, can hold 2.5Kg each, and much more, including destruction of wooden planks, etc",
+  "content": "@XRoboHub\nA new dexterous hand is here. DexcelRobotics, a startup founded by a former core member of Tencent Robotics X, has launched its first product, the Apex Hand. The company claims it's the first in the industry capable of operating a cell phone with a single hand.\n\nThe Apex Hand is a well-rounded performer, with a focus on real-world application. Here are its key specs:\n\n► Degrees of Freedom: 21, which the founder notes is enough to replicate most human hand functions.\n► Strength: A single-finger force of ~2.5kg and a vertical lifting capacity of ~30kg.\n► Speed &amp; Precision: A response time near human-level, with positioning accuracy of ≤0.1mm.\n► Robustness: Can withstand unexpected impacts and maintain stability.\n► Tactile: Features self-developed flexible electronic skin with a sub-millisecond communication delay and &gt;1000Hz refresh rate.\n\nhttps://x.com/XRoboHub/status/1967220986702704875\n",
+  "url": "https://v.redd.it/7dobez0q47pf1",
+  "source": "r/singularity",
+  "sourceType": "reddit",
+  "author": "Distinct-Question-16",
+  "publishedAt": "2025-09-14T21:12:55.000Z",
+  "scrapedAt": "2025-09-16T01:02:09.668Z",
+  "score": 349.6,
+  "engagement": {
+    "upvotes": 437,
+    "comments": 42
+  },
+  "tags": [
+    "ai",
+    "startup"
+  ],
+  "qualityScore": 6,
+  "summary": "Key Takeaway:\nA new dexterous robotic hand, the Apex Hand, has been launched by DexcelRobotics, a startup founded by a former Tencent Robotics X member. It boasts impressive capabilities, including the ability to operate a cell phone with a single hand.\n\nWhy it Matters:\nThe Apex Hand's advanced features, such as 21 degrees of freedom, high strength, speed, precision, and tactile sensing, showcase the rapid progress in robotic hand technology. This could lead to significant advancements in various applications, from assistive devices to industrial automation.\n\nBrief Context:\nThe Apex Hand is the first product from DexcelRobotics, a startup founded by a former core member of Tencent Robotics X. The hand's impressive specifications, including the ability to replicate most human hand functions, demonstrate the ongoing advancements in the field of robotics and AI-powered dexterous manipulation.",
+  "faq": [
+    {
+      "question": "What is the Apex hand and what can it do?",
+      "answer": "The Apex hand is a new dexterous robotic hand developed by DexcelRobotics. It is capable of 21 degrees of freedom, allowing it to replicate most human hand functions. Key features include a single-finger force of up to 2.5kg, a vertical lifting capacity of 30kg, human-level response time, sub-millimeter positioning accuracy, and robust tactile sensing capabilities."
+    },
+    {
+      "question": "How strong is the Apex hand?",
+      "answer": "The Apex hand is remarkably strong for its size. Each individual finger can exert a force of up to 2.5kg, and the hand has a total vertical lifting capacity of around 30kg. This strength allows the Apex hand to perform tasks like crushing wooden planks that would be difficult for a human hand."
+    },
+    {
+      "question": "Can the Apex hand be used to operate a smartphone?",
+      "answer": "Yes, one of the key claims about the Apex hand is that it is the first in the industry capable of operating a cell phone with a single hand. Its 21 degrees of freedom and human-level dexterity allow it to precisely manipulate small objects and controls."
+    },
+    {
+      "question": "What kind of sensors and tactile feedback does the Apex hand have?",
+      "answer": "The Apex hand features self-developed flexible electronic \"skin\" that provides advanced tactile sensing. This allows the hand to detect contact, pressure, and texture with a sub-millisecond communication delay and over 1000Hz refresh rate. This high-resolution tactile feedback is crucial for dexterous manipulation."
+    },
+    {
+      "question": "How robust and stable is the Apex hand?",
+      "answer": "In addition to its strength and precision, the Apex hand is designed to be highly robust. It can withstand unexpected impacts and maintain stability, making it suitable for real-world applications where the hand may encounter unpredictable forces or disturbances."
+    }
+  ],
+  "isApproved": false
+}

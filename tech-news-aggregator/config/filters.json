@@ -1,0 +1,64 @@
+{
+  "qualityThresholds": {
+    "minimumEngagement": {
+      "reddit": 50, //Only include Reddit posts that have at least X upvotes
+      "hackernews": 50 //Only include Hacker News stories that have at least X0 points
+    },
+    "minimumContentLength": 100, //Articles must have at least X characters of content to be considered
+    "maximumAge": 48 //Only include articles that are less than X hours old
+  },
+  "contentFilters": {
+    "excludeKeywords": [
+      "clickbait",
+      "you won't believe",
+      "shocking",
+      "doctors hate this",
+      "one weird trick",
+      "trump",
+      "politics",
+      "election",
+      "biden",
+      "congress",
+      "senate",
+      "republican",
+      "democrat",
+      "political",
+      "vaccine",
+      "covid",
+      "coronavirus",
+      "pandemic",
+      "crime",
+      "shooting",
+      "murder",
+      "arrest"
+    ],
+    "requireKeywords": {
+      "ai": ["artificial intelligence", "machine learning", "AI", "ML", "neural", "GPT", "LLM", "automation"],
+      "tech": ["technology", "software", "hardware", "programming", "development", "innovation", "startup"]
+    }
+  },
+  "sourceReliability": {
+    "trusted": [
+      "openai.com",
+      "google.com",
+      "microsoft.com",
+      "techcrunch.com",
+      "arstechnica.com",
+      "mit.edu",
+      "stanford.edu",
+      "github.com",
+      "en.wikipedia.org",
+      "wired.com",
+      "techradar.com"
+    ],
+    "questionable": [
+      "dailymail.co.uk",
+      "buzzfeed.com"
+    ]
+  },
+  "duplicateDetection": {
+    "titleSimilarityThreshold": 0.8, //Compares article titles using similarity scoring (0.0 to 1.0) - 0.8 = 80% similar - If two titles are 80% alike, treat as duplicates
+    "contentSimilarityThreshold": 0.7, // - Compares article content using similarity scoring - 0.7 = 70% similar - If content is 70% alike, treat as duplicates - Catches cases where titles differ but the actual story content is the same
+    "timeWindow": 24 //Only check for duplicates within the last 24 hours - Stories older than 24 hours won't be compared (allows for follow-up coverage)
+  }
+}

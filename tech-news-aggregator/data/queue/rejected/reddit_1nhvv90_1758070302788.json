@@ -1,0 +1,44 @@
+{
+  "id": "reddit_1nhvv90",
+  "title": "[D] The quality of AAAI reviews is atrocious",
+  "content": "Never have I seen such low-quality reviews from an A\\* conference. I understand that there was a record number of submissions, but come on. A lot of issues mentioned in the reviews can be answered by actually reading the main text. The reviews also lack so much detail to the point where it's not even constructive criticism, but rather a bunch of nitpicky reasons for rejection. AAAI needs to do better.",
+  "url": "https://www.reddit.com/r/MachineLearning/comments/1nhvv90/d_the_quality_of_aaai_reviews_is_atrocious/",
+  "source": "r/MachineLearning",
+  "sourceType": "reddit",
+  "author": "Zapin6",
+  "publishedAt": "2025-09-15T19:40:36.000Z",
+  "scrapedAt": "2025-09-17T00:49:49.001Z",
+  "score": 159.6,
+  "engagement": {
+    "upvotes": 133,
+    "comments": 66
+  },
+  "tags": [
+    "ai"
+  ],
+  "qualityScore": 7,
+  "summary": "Key Takeaway:\nThe quality of AAAI conference reviews has been criticized as low, with reviewers providing superficial and unhelpful feedback that fails to engage with the substance of the submissions.\n\nWhy it Matters:\nRigorous and constructive peer review is crucial for maintaining the integrity and advancement of the field of machine learning. Subpar reviews can hinder the progress of promising research and discourage talented researchers from submitting to the conference.\n\nBrief Context:\nAAAI (Association for the Advancement of Artificial Intelligence) is a prestigious AI conference that received a record number of submissions, leading to concerns that the review process may have been overwhelmed. The Reddit post highlights the frustration of researchers who feel that the quality of reviews has fallen short of the conference's reputation.",
+  "faq": [
+    {
+      "question": "What are the common issues with AAAI reviews?",
+      "answer": "nswer: According to the post, the main issues with AAAI reviews include:    - The reviews lack detail and come across as \"nitpicky reasons for rejection\" rather than constructive criticism.    - Many of the issues mentioned in the reviews could be addressed by simply reading the main text of the paper.    - The quality of the reviews is generally low, despite the record number of submissions to the conference."
+    },
+    {
+      "question": "Why is the quality of AAAI reviews a concern?",
+      "answer": "nswer: The quality of reviews is important for several reasons:    - Reviews should provide meaningful feedback to help authors improve their work.    - Low-quality reviews make it difficult for authors to understand why their paper was rejected and how to address the issues.    - Poor reviewing can negatively impact the overall quality and reputation of the conference."
+    },
+    {
+      "question": "How can AAAI improve the quality of their reviews?",
+      "answer": "nswer: The post suggests that AAAI needs to \"do better\" in terms of improving the quality of their reviews. Some potential ways they could achieve this include:    - Providing more detailed and constructive feedback in the reviews.    - Ensuring reviewers actually read the full paper before providing feedback.    - Implementing stricter review guidelines or training for reviewers to maintain high standards.    - Adjusting the review process to handle the increased number of submissions effectively."
+    },
+    {
+      "question": "What is the impact of poor AAAI reviews on the research community?",
+      "answer": "nswer: Poor quality reviews from a prestigious conference like AAAI can have several negative impacts on the research community:    - It can discourage researchers from submitting their work to the conference in the future.    - Low-quality feedback makes it harder for authors to improve their research and get it published.    - It can undermine the credibility and reputation of the AAAI conference.    - This, in turn, can negatively affect the overall progress and advancement of the field of machine learning and AI."
+    },
+    {
+      "question": "How can researchers respond to low-quality AAAI reviews?",
+      "answer": "nswer: If researchers receive low-quality reviews from AAAI, there are a few potential ways they can respond:    - Provide constructive feedback to the conference organizers about the review process and quality.    - Seek out alternative venues or conferences that may provide more meaningful and helpful reviews.    - Use the limited feedback from the AAAI reviews to the best of their ability and continue refining their work.    - Advocate for improvements to the AAAI review process to help raise the standards in the future."
+    }
+  ],
+  "isApproved": true
+}

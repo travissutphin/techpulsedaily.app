@@ -1,0 +1,14 @@
+{
+  "apiKey": "REPLACE_WITH_ENV_VARIABLE",
+  "model": "claude-3-haiku-20240307",
+  "prompts": {
+    "qualityAssessment": "Analyze this tech/AI news article and rate its quality from 1-10 based on: 1) Technical accuracy 2) Newsworthiness 3) Credibility of source 4) Engagement potential. Consider if this would be good 'water cooler' conversation material. Return a JSON object with: {\"score\": number, \"reasoning\": string, \"isRecommended\": boolean}",
+    "contentSummarization": "Create a concise summary of this tech/AI article that gives readers enough information for meaningful 'water cooler' conversations. Include: 1) Key takeaway in 1-2 sentences 2) Why it matters 3) Brief context. Keep it engaging but factual. Target 100-150 words.",
+    "faqGeneration": "Generate 3-5 frequently asked questions and answers about this tech/AI topic that would help with SEO and voice search optimization. Focus on questions people might actually ask about this topic.",
+    "duplicateDetection": "Compare these two articles and determine if they cover the same story. Consider title similarity, main topics, and key facts. Return JSON: {\"isDuplicate\": boolean, \"similarity\": number, \"reason\": string}"
+  },
+  "settings": {
+    "maxTokens": 1000,
+    "temperature": 0.3
+  }
+}

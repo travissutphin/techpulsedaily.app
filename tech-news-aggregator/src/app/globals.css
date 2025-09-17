@@ -1,0 +1,301 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
+@layer utilities {
+  .text-tp-primary { color: var(--tp-text-primary); }
+  .text-tp-secondary { color: var(--tp-text-secondary); }
+  .text-tp-muted { color: var(--tp-text-muted); }
+  .text-tp-disabled { color: var(--tp-text-disabled); }
+  .bg-tp-background { background-color: var(--tp-background); }
+  .bg-tp-surface { background-color: var(--tp-surface); }
+  .bg-tp-primary { background-color: var(--tp-primary); }
+  .border-tp-border { border-color: var(--tp-border); }
+  .border-tp-primary { border-color: var(--tp-primary); }
+}
+
+/* TechPulse Daily Design System - Dark Mode */
+:root {
+  /* Brand Colors from TechPulse Daily Logo */
+  --tp-primary: #00D4AA;
+  --tp-primary-dark: #1A4B47;
+  --tp-primary-light: #4DE8C7;
+  --tp-secondary: #1E3A3A;
+  --tp-secondary-light: #2A5B57;
+  --tp-secondary-dark: #0F1F1F;
+  
+  /* Dark Mode Color Palette - TechPulse Theme */
+  --tp-background: #0F1F1F;
+  --tp-background-secondary: #1A2F2F;
+  --tp-surface: #263D3D;
+  --tp-surface-hover: #304747;
+  --tp-border: #405555;
+  --tp-border-light: #526B6B;
+  
+  /* Text Colors for Dark Mode - TechPulse Theme */
+  --tp-text-primary: #E0F4F3;
+  --tp-text-secondary: #C0E0DF;
+  --tp-text-muted: #A0C0BF;
+  --tp-text-disabled: #80A09F;
+  
+  /* Accent Colors for TechPulse Theme */
+  --tp-success: #10B981;
+  --tp-warning: #F59E0B;
+  --tp-error: #EF4444;
+  --tp-info: #3B82F6;
+
+  /* Typography */
+  --tp-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+  /* Shadows */
+  --tp-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tp-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tp-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tp-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --tp-transition: 200ms ease-in-out;
+  --tp-transition-fast: 150ms ease-in-out;
+}
+
+@theme inline {
+  --color-background: var(--tp-background);
+  --color-foreground: var(--tp-text-primary);
+  --font-sans: var(--tp-font-family);
+}
+
+body {
+  font-family: var(--tp-font-family);
+  background: var(--tp-background);
+  color: var(--tp-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern Card Component - TechPulse Theme */
+.tp-card {
+  background: var(--tp-surface);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 212, 170, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--tp-border);
+  overflow: hidden;
+  transition: all var(--tp-transition);
+}
+
+.tp-card:hover {
+  background: var(--tp-surface-hover);
+  box-shadow: 0 10px 15px -3px rgba(0, 212, 170, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  border-color: var(--tp-border-light);
+  transform: translateY(-2px);
+}
+
+/* Quality Badge System */
+/* Quality badges removed - using inline styles for flexibility */
+
+/* Primary Button - TechPulse Theme */
+.tp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--tp-primary);
+  color: var(--tp-secondary-dark);
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--tp-transition-fast);
+  box-shadow: 0 4px 6px -1px rgba(0, 212, 170, 0.3), 0 2px 4px -2px rgba(0, 212, 170, 0.3);
+}
+
+.tp-btn-primary:hover {
+  background: var(--tp-primary-light);
+  box-shadow: 0 10px 15px -3px rgba(0, 212, 170, 0.4), 0 4px 6px -4px rgba(0, 212, 170, 0.4);
+  transform: translateY(-1px);
+  color: var(--tp-secondary-dark);
+  text-decoration: none;
+}
+
+/* Secondary Button - TechPulse Theme */
+.tp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #008080;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--tp-transition-fast);
+  box-shadow: 0 4px 6px -1px rgba(0, 128, 128, 0.3), 0 2px 4px -2px rgba(0, 128, 128, 0.3);
+}
+
+.tp-btn-secondary:hover {
+  background: #006666;
+  box-shadow: 0 10px 15px -3px rgba(0, 128, 128, 0.4), 0 4px 6px -4px rgba(0, 128, 128, 0.4);
+  transform: translateY(-1px);
+  color: white;
+  text-decoration: none;
+}
+
+/* Danger Button - TechPulse Theme */
+.tp-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #ec768b;
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--tp-transition-fast);
+  box-shadow: 0 4px 6px -1px rgba(236, 118, 139, 0.3), 0 2px 4px -2px rgba(236, 118, 139, 0.3);
+}
+
+.tp-btn-danger:hover {
+  background: #e85a73;
+  box-shadow: 0 10px 15px -3px rgba(236, 118, 139, 0.4), 0 4px 6px -4px rgba(236, 118, 139, 0.4);
+  transform: translateY(-1px);
+  color: white;
+  text-decoration: none;
+}
+
+/* Tag/Badge System - TechPulse Theme */
+.tp-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: var(--tp-surface-hover);
+  color: var(--tp-text-secondary);
+  border: 1px solid var(--tp-border);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--tp-transition-fast);
+}
+
+.tp-tag:hover {
+  background: rgba(0, 212, 170, 0.15);
+  color: var(--tp-primary);
+  border-color: var(--tp-primary);
+  text-decoration: none;
+}
+
+.tp-tag-primary {
+  background: rgba(0, 212, 170, 0.15);
+  color: var(--tp-primary);
+  border-color: var(--tp-primary);
+}
+
+/* TechPulse Logo Styling */
+.tp-logo {
+  height: 2.5rem;
+  width: auto;
+  transition: transform var(--tp-transition-fast);
+}
+
+.tp-logo:hover {
+  transform: scale(1.05);
+}
+
+.tp-logo-large {
+  height: 4rem;
+  width: auto;
+}
+
+.tp-logo-small {
+  height: 1.75rem;
+  width: auto;
+}
+
+/* Key Takeaway Box - TechPulse Theme */
+.tp-key-takeaway {
+  background: rgba(0, 212, 170, 0.1);
+  border-left: 4px solid var(--tp-primary);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 1rem 0;
+}
+
+.tp-key-takeaway h4 {
+  color: var(--tp-text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tp-key-takeaway p {
+  color: var(--tp-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Social Icons removed - using inline styles for flexibility */
+
+/* Header Navigation - TechPulse Theme */
+.tp-nav {
+  background: var(--tp-surface);
+  border-bottom: 1px solid var(--tp-border);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 0 rgba(0, 212, 170, 0.1);
+}
+
+/* Article meta information removed - using inline styles for flexibility */
+
+/* Loading Animation */
+.tp-loading {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--tp-border);
+  border-radius: 50%;
+  border-top-color: var(--tp-primary);
+  animation: tp-spin 1s ease-in-out infinite;
+}
+
+@keyframes tp-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility Classes */
+.tp-fade-in {
+  animation: tpFadeIn 0.5s ease-in-out;
+}
+
+@keyframes tpFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Focus States for Accessibility */
+.tp-btn-primary:focus {
+  outline: 2px solid var(--tp-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 640px) {
+  .tp-card {
+    border-radius: 0.75rem;
+  }
+
+  .tp-key-takeaway {
+    padding: 0.75rem 1rem;
+  }
+}

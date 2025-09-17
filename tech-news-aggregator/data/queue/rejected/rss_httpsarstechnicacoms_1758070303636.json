@@ -1,0 +1,43 @@
+{
+  "id": "rss_httpsarstechnicacoms",
+  "title": "A record supply load won’t reach the International Space Station as scheduled",
+  "content": "\n                            <p>A problem with the main engine on Northrop Grumman's Cygnus XL spacecraft will keep it from delivering 11,000 pounds of supplies and experiments to the International Space Station as scheduled on Wednesday.</p>\n<p>In a statement released Tuesday afternoon, NASA said ground teams are evaluating backup plans that might still allow the Cygnus spacecraft to reach the space station, just not on schedule. The problem arose early Tuesday when the spacecraft's main engine shut down earlier than expected during two burns to boost the ship's orbit for its rendezvous with the ISS, according to NASA.</p>\n<p>Officials didn't release any other details about the engine problem, but all other systems on the Cygnus XL spacecraft are performing as designed, NASA said. The agency said a new arrival date and time at the space station is \"under review.\"</p><p><a href=\"https://arstechnica.com/space/2025/09/a-record-supply-load-wont-reach-the-international-space-station-as-scheduled/\">Read full article</a></p>\n<p><a href=\"https://arstechnica.com/space/2025/09/a-record-supply-load-wont-reach-the-international-space-station-as-scheduled/#comments\">Comments</a></p>\n\n                        ",
+  "url": "https://arstechnica.com/space/2025/09/a-record-supply-load-wont-reach-the-international-space-station-as-scheduled/",
+  "source": "Ars Technica",
+  "sourceType": "rss",
+  "author": "\n                    Stephen Clark\n                ",
+  "publishedAt": "2025-09-16T23:13:28.000Z",
+  "scrapedAt": "2025-09-17T00:50:09.295Z",
+  "score": 88,
+  "engagement": {
+    "shares": 0
+  },
+  "tags": [
+    "ai"
+  ],
+  "qualityScore": 8,
+  "summary": "Key Takeaway: A technical issue with the main engine on Northrop Grumman's Cygnus XL spacecraft has delayed the delivery of a record 11,000 pounds of supplies and experiments to the International Space Station.\n\nWhy it Matters: The timely delivery of critical supplies and experiments to the ISS is essential for the ongoing operations and research conducted by the astronauts. This delay could potentially impact the station's activities and experiments.\n\nBrief Context: The Cygnus XL spacecraft was scheduled to deliver the supplies to the ISS on Wednesday, but the main engine shut down earlier than expected during the orbit-boosting maneuvers. NASA is now evaluating backup plans to get the Cygnus to the station, though the new arrival date is still under review.",
+  "faq": [
+    {
+      "question": "What happened to the Cygnus XL spacecraft?",
+      "answer": "nswer: The Cygnus XL spacecraft experienced an issue with its main engine, causing it to shut down earlier than expected during two burns to boost its orbit for rendezvous with the International Space Station. This problem will prevent the spacecraft from delivering its scheduled 11,000 pounds of supplies and experiments to the ISS as originally planned."
+    },
+    {
+      "question": "Why won't the Cygnus spacecraft reach the ISS as scheduled?",
+      "answer": "nswer: The engine problem on the Cygnus XL spacecraft has caused a delay in its planned arrival at the International Space Station. NASA is evaluating backup plans that may still allow the spacecraft to reach the ISS, but the original scheduled delivery date has been postponed as a result of the engine issue."
+    },
+    {
+      "question": "What is the status of the Cygnus spacecraft and its cargo?",
+      "answer": "nswer: According to NASA, all other systems on the Cygnus XL spacecraft are performing as designed, despite the engine problem. The agency is reviewing a new arrival date and time for the spacecraft at the International Space Station as they work on backup plans to get the 11,000 pounds of supplies and experiments delivered."
+    },
+    {
+      "question": "How will this delay impact the operations on the International Space Station?",
+      "answer": "nswer: The delay in the Cygnus spacecraft's delivery could potentially impact the operations and experiments planned on the International Space Station, as the station relies on regular cargo deliveries to maintain its supplies and research capabilities. NASA is likely working to minimize any disruptions to the ISS crew and ongoing activities."
+    },
+    {
+      "question": "What are the potential causes of the Cygnus engine problem?",
+      "answer": "nswer: The article does not provide specific details on the cause of the Cygnus engine issue, stating only that the main engine shut down earlier than expected during the orbit-boosting burns. Further investigation by NASA and Northrop Grumman, the spacecraft's manufacturer, will likely be needed to determine the exact cause of the engine problem."
+    }
+  ],
+  "isApproved": true
+}

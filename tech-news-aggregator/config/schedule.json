@@ -1,0 +1,19 @@
+{
+  "scraping": {
+    "enabled": true,
+    "times": ["06:00", "12:00", "18:00"],
+    "timezone": "America/New_York"
+  },
+  "publishing": {
+    "autoPublish": false,
+    "requireApproval": true,
+    "maxPostsPerDay": 5
+  },
+  "maintenance": {
+    "cleanupOldData": {
+      "enabled": true,
+      "retentionDays": 30,
+      "schedule": "0 2 * * *"
+    }
+  }
+}

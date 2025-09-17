@@ -1,0 +1,44 @@
+{
+  "id": "rss_httpstechcrunchcom20",
+  "title": "Y Combinator-backed Rulebase wants to be the AI co-worker for fintech",
+  "content": "Y Combinator-alum Rulebase is betting that the next wave of automation in financial services will be the unglamorous tasks.",
+  "url": "https://techcrunch.com/2025/09/16/y-combinator-backed-rulebase-wants-to-be-the-ai-co-worker-for-fintech/",
+  "source": "TechCrunch AI",
+  "sourceType": "rss",
+  "author": "Tage Kene-Okafor",
+  "publishedAt": "2025-09-16T12:03:04.000Z",
+  "scrapedAt": "2025-09-17T00:50:04.780Z",
+  "score": 96,
+  "engagement": {
+    "shares": 0
+  },
+  "tags": [
+    "ai",
+    "tech"
+  ],
+  "qualityScore": 8,
+  "summary": "Key Takeaway: Rulebase, a Y Combinator-backed startup, aims to automate the mundane, repetitive tasks in fintech through its AI-powered platform, positioning itself as the \"AI co-worker\" for financial services companies.\n\nWhy It Matters: As the financial industry increasingly embraces automation, Rulebase's solution could help fintech firms streamline their operations, improve efficiency, and free up human employees to focus on more strategic, high-value work.\n\nBrief Context: Rulebase is part of a growing trend in the AI and automation space, where startups are targeting the less glamorous but essential tasks that often consume a significant portion of a company's resources. By providing an AI-driven solution tailored to the needs of the fintech sector, Rulebase hopes to become a valuable partner for financial services firms looking to optimize their workflows and stay competitive in a rapidly evolving industry.",
+  "faq": [
+    {
+      "question": "What is Rulebase and what does the company do?",
+      "answer": "Rulebase is an AI startup backed by Y Combinator that is focused on automating repetitive, unglamorous tasks in the financial services industry. The company is building AI-powered tools to help fintech companies automate back-office processes, compliance checks, and other administrative work."
+    },
+    {
+      "question": "How does Rulebase's AI technology work?",
+      "answer": "Rulebase uses machine learning and natural language processing to analyze financial data and documents, identify repetitive tasks, and then automate those processes. The goal is to free up human employees to focus on more strategic, high-value work while the AI handles the mundane, time-consuming tasks."
+    },
+    {
+      "question": "What are some examples of the types of tasks Rulebase can automate for fintech companies?",
+      "answer": "Rulebase can automate things like data entry, compliance checks, customer onboarding, account reconciliation, and other administrative processes that are essential but often tedious for fintech employees. The AI is trained to understand financial terminology and workflows to take these repetitive tasks off the hands of human workers."
+    },
+    {
+      "question": "How does Rulebase's approach to AI automation differ from other fintech AI solutions?",
+      "answer": "Rather than focusing on flashy, customer-facing AI features, Rulebase is targeting the behind-the-scenes, back-office work that is crucial for fintech operations but often overlooked. The company believes this unglamorous automation is the next big wave in financial services technology."
+    },
+    {
+      "question": "What are the benefits of using Rulebase's AI co-worker for fintech companies?",
+      "answer": "Key benefits include increased efficiency, reduced errors, and freeing up employees to focus on more strategic priorities. Rulebase's AI can work 24/7 to plow through administrative tasks, allowing fintech firms to scale operations without adding headcount. This can lead to cost savings and productivity gains."
+    }
+  ],
+  "isApproved": true
+}

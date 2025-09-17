@@ -1,0 +1,44 @@
+{
+  "id": "rss_httpstechcrunchcom20",
+  "title": "CodeRabbit raises $60M, valuing the 2-year-old AI code review startup at $550M ",
+  "content": "The round, which brought the two-year-old startup’s total funding to $88 million, was led by Scale Venture Partners.",
+  "url": "https://techcrunch.com/2025/09/16/coderabbit-raises-60m-valuing-the-2-year-old-ai-code-review-startup-at-550m/",
+  "source": "TechCrunch AI",
+  "sourceType": "rss",
+  "author": "Marina Temkin",
+  "publishedAt": "2025-09-16T19:00:00.000Z",
+  "scrapedAt": "2025-09-17T00:50:04.779Z",
+  "score": 96,
+  "engagement": {
+    "shares": 0
+  },
+  "tags": [
+    "ai",
+    "startup"
+  ],
+  "qualityScore": 8,
+  "summary": "Key Takeaway: CodeRabbit, a 2-year-old AI-powered code review startup, has raised $60 million, valuing the company at $550 million.\n\nWhy It Matters: CodeRabbit's rapid growth and substantial funding round highlight the increasing demand for AI-driven tools that can streamline software development and improve code quality, a critical need in the fast-paced tech industry.\n\nBrief Context: CodeRabbit's platform uses machine learning to automatically review and provide feedback on code, helping developers identify and fix issues more efficiently. The latest funding round, led by Scale Venture Partners, will enable the startup to further expand its technology and customer base, potentially transforming the way software is developed and maintained.",
+  "faq": [
+    {
+      "question": "What is CodeRabbit?",
+      "answer": "CodeRabbit is an AI-powered code review startup that has raised $60 million in a new funding round. The startup was founded just 2 years ago and has now raised a total of $88 million in funding."
+    },
+    {
+      "question": "What does CodeRabbit do?",
+      "answer": "CodeRabbit uses artificial intelligence to automate and streamline the code review process for software developers. Its AI-powered tools help identify bugs, security vulnerabilities, and other issues in code, allowing developers to catch problems earlier in the development lifecycle."
+    },
+    {
+      "question": "Who invested in CodeRabbit?",
+      "answer": "The latest $60 million funding round for CodeRabbit was led by Scale Venture Partners. This brings the startup's total funding to $88 million since it was founded just 2 years ago."
+    },
+    {
+      "question": "How much is CodeRabbit valued at?",
+      "answer": "The new $60 million funding round values CodeRabbit at $550 million, a significant increase from its previous valuation. This rapid growth in just 2 years highlights the demand for AI-powered code review tools in the software development industry."
+    },
+    {
+      "question": "Why is CodeRabbit's technology important?",
+      "answer": "CodeRabbit's AI-driven code review tools help developers catch bugs and security issues earlier, saving time and money. As software becomes more complex, automated code review is becoming increasingly crucial to ensure software quality and security."
+    }
+  ],
+  "isApproved": true
+}
