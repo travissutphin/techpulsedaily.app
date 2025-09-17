@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(npm run dev:*)",
+      "Bash(find:*)",
+      "Read(//c/xampp/htdocs/secondglance.news/bottle_cap_Assets/images/**)",
+      "Bash(taskkill:*)",
+      "Bash(TASKKILL /PID 14576 /T /F)",
+      "Bash(rm:*)",
+      "Bash(PORT=3012 npm run dev)",
+      "Bash(npm run build:*)",
+      "Bash(TASKKILL /F /IM node.exe)",
+      "Bash(netstat:*)",
+      "Bash(TASKKILL /PID 10816 /T /F)",
+      "Bash(curl:*)",
+      "Bash(xargs sed:*)",
+      "Bash(\"C:/Windows/System32/taskkill.exe\" /f /im node.exe)",
+      "Bash(TASKKILL /PID 10500 /T /F)",
+      "Bash(PORT=3013 npm run dev)",
+      "Bash(TASKKILL /PID 7752 /T /F)",
+      "Bash(tree:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
