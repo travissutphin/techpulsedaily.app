@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+tech-news-aggregator/.next/
 
 # production
 /build
@@ -37,6 +38,9 @@ yarn-error.log*
 # secrets - NEVER commit these
 config/secrets/
 data/logs/
+
+# queue files - temporary processing data
+data/queue/
 
 # vercel
 .vercel

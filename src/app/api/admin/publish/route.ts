@@ -1,9 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { Publisher } from '@/lib/publisher';
+import { requireAuth } from '@/lib/auth/authMiddleware';
 
 const publisher = new Publisher();
 
-export async function POST() {
+export const POST = requireAuth(async (request: NextRequest) => {
   try {
     console.log('Manual publishing triggered via API');
     const result = await publisher.publishApprovedArticles();
@@ -20,4 +21,4 @@ export async function POST() {
       { status: 500 }
     );
   }
-}
+});

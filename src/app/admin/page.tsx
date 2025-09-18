@@ -33,7 +33,9 @@ export default function AdminDashboard() {
   const [processing, setProcessing] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [apiKey, setApiKey] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -42,10 +44,11 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     try {
       setLoading(true);
+      const headers = apiKey ? { 'x-api-key': apiKey } : {};
       const [pendingRes, publishedRes, statsRes] = await Promise.all([
-        fetch('/api/admin/articles?type=pending'),
-        fetch('/api/admin/articles?type=published'),
-        fetch('/api/admin/stats')
+        fetch('/api/admin/articles?type=pending', { headers }),
+        fetch('/api/admin/articles?type=published', { headers }),
+        fetch('/api/admin/stats', { headers })
       ]);
       
       const pendingData = await pendingRes.json();
@@ -69,7 +72,10 @@ export default function AdminDashboard() {
     try {
       const response = await fetch('/api/admin/articles', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey
+        },
         body: JSON.stringify({ articleId, action })
       });
 
@@ -98,7 +104,10 @@ export default function AdminDashboard() {
   const triggerScraping = async () => {
     try {
       setProcessing(true);
-      const response = await fetch('/api/scrape', { method: 'POST' });
+      const response = await fetch('/api/scrape', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey }
+      });
       const result = await response.json();
       
       if (result.success) {
@@ -118,7 +127,10 @@ export default function AdminDashboard() {
   const triggerPublishing = async () => {
     try {
       setPublishing(true);
-      const response = await fetch('/api/admin/publish', { method: 'POST' });
+      const response = await fetch('/api/admin/publish', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey }
+      });
       const result = await response.json();
       
       if (result.success) {
@@ -137,16 +149,30 @@ export default function AdminDashboard() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin123') {
-      setAuthenticated(true);
-    } else {
-      alert('Invalid password');
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setApiKey(data.apiKey);
+        setAuthenticated(true);
+      } else {
+        alert('Invalid credentials');
+      }
+    } catch (error) {
+      alert('Login failed');
     }
   };
 
   const handleLogout = () => {
     setAuthenticated(false);
+    setUsername('');
     setPassword('');
+    setApiKey('');
   };
 
   if (!authenticated) {
@@ -168,10 +194,18 @@ export default function AdminDashboard() {
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleLogin}>
             <input
+              type="text"
+              required
+              className="appearance-none rounded-md relative block w-full px-4 py-3 bg-tp-surface border border-tp-border placeholder-tp-text-muted text-tp-text-primary focus:outline-none focus:ring-2 focus:ring-tp-primary focus:border-tp-primary sm:text-sm"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
               type="password"
               required
               className="appearance-none rounded-md relative block w-full px-4 py-3 bg-tp-surface border border-tp-border placeholder-tp-text-muted text-tp-text-primary focus:outline-none focus:ring-2 focus:ring-tp-primary focus:border-tp-primary sm:text-sm"
-              placeholder="Admin password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -415,7 +449,7 @@ function ArticleCard({
               </button>
               <button
                 onClick={() => onAction(article.id, 'reject')}
-                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm transition-colors font-medium"
+                className="tp-btn-danger text-white px-3 py-1 rounded text-sm transition-colors font-medium"
               >
                 <i className="fas fa-times mr-1"></i>
                 Reject
@@ -482,25 +516,6 @@ function ArticleCard({
           ID: {article.id.slice(-8)}
         </span>
       </div>
-
-      {!isPublished && (
-        <div className="flex gap-2 mt-3 pt-3 border-t border-tp-border">
-          <button
-            onClick={() => onAction(article.id, 'approve')}
-            className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 font-medium"
-          >
-            <i className="fas fa-check"></i>
-            Approve
-          </button>
-          <button
-            onClick={() => onAction(article.id, 'reject')}
-            className="flex-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 font-medium"
-          >
-            <i className="fas fa-times"></i>
-            Reject
-          </button>
-        </div>
-      )}
     </div>
   );
 }

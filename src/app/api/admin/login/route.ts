@@ -1,28 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// Hard-coded admin password - change this to your desired password
-const ADMIN_PASSWORD = 'admin123';
+import bcrypt from 'bcryptjs';
+import authConfig from '@/config/auth.json';
+import { rateLimiter } from '@/lib/security/rateLimiter';
 
 export async function POST(request: NextRequest) {
   try {
-    const { password } = await request.json();
+    const { username, password } = await request.json();
 
-    if (password === ADMIN_PASSWORD) {
-      const response = NextResponse.json({ success: true });
-      
-      // Set authentication cookie (expires in 24 hours)
-      response.cookies.set('admin_authenticated', 'true', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        maxAge: 24 * 60 * 60 // 24 hours
-      });
+    // Check rate limit (using IP address or username)
+    const clientId = request.headers.get('x-forwarded-for') || request.ip || username;
+    const rateLimit = rateLimiter.checkRateLimit(clientId);
 
-      return response;
-    } else {
-      return NextResponse.json({ success: false, error: 'Invalid password' }, { status: 401 });
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: rateLimit.message },
+        { status: 429 }
+      );
     }
+
+    if (!username || !password) {
+      return NextResponse.json(
+        { error: 'Username and password required' },
+        { status: 400 }
+      );
+    }
+
+    if (username !== authConfig.admin.username) {
+      rateLimiter.recordFailedAttempt(clientId);
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
+    const isValid = await bcrypt.compare(password, authConfig.admin.passwordHash);
+
+    if (!isValid) {
+      rateLimiter.recordFailedAttempt(clientId);
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
+    // Clear rate limit on successful login
+    rateLimiter.recordSuccessfulLogin(clientId);
+
+    return NextResponse.json({
+      success: true,
+      apiKey: authConfig.admin.apiKey
+    });
   } catch (error) {
-    return NextResponse.json({ success: false, error: 'Invalid request' }, { status: 400 });
+    console.error('Login error:', error);
+    return NextResponse.json(
+      { error: 'Login failed' },
+      { status: 500 }
+    );
   }
 }

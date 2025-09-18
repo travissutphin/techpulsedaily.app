@@ -1,11 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { QueueManager } from '@/lib/storage/queue';
 import { ContentProcessor } from '@/lib/processor';
+import { requireAuth } from '@/lib/auth/authMiddleware';
 
 const queue = new QueueManager();
 const processor = new ContentProcessor();
 
-export async function GET() {
+export const GET = requireAuth(async (request: NextRequest) => {
   try {
     const queueStats = await queue.getQueueStats();
     const processingStats = await processor.getProcessingStats();
@@ -21,4 +22,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-}
+});

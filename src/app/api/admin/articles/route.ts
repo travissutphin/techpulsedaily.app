@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { QueueManager } from '@/lib/storage/queue';
+import { requireAuth } from '@/lib/auth/authMiddleware';
 
 const queue = new QueueManager();
 
-export async function GET(request: NextRequest) {
+export const GET = requireAuth(async (request: NextRequest) => {
   try {
     const { searchParams } = new URL(request.url);
     const type = searchParams.get('type') || 'pending';
@@ -23,9 +24,9 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
-}
+});
 
-export async function POST(request: NextRequest) {
+export const POST = requireAuth(async (request: NextRequest) => {
   try {
     const { articleId, action } = await request.json();
     
@@ -67,4 +68,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
+});
