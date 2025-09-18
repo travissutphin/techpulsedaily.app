@@ -1,11 +1,11 @@
 {
   "qualityThresholds": {
     "minimumEngagement": {
-      "reddit": 50, //Only include Reddit posts that have at least X upvotes
-      "hackernews": 50 //Only include Hacker News stories that have at least X0 points
+      "reddit": 50,
+      "hackernews": 50
     },
-    "minimumContentLength": 100, //Articles must have at least X characters of content to be considered
-    "maximumAge": 48 //Only include articles that are less than X hours old
+    "minimumContentLength": 100,
+    "maximumAge": 48
   },
   "contentFilters": {
     "excludeKeywords": [
@@ -57,8 +57,8 @@
     ]
   },
   "duplicateDetection": {
-    "titleSimilarityThreshold": 0.8, //Compares article titles using similarity scoring (0.0 to 1.0) - 0.8 = 80% similar - If two titles are 80% alike, treat as duplicates
-    "contentSimilarityThreshold": 0.7, // - Compares article content using similarity scoring - 0.7 = 70% similar - If content is 70% alike, treat as duplicates - Catches cases where titles differ but the actual story content is the same
-    "timeWindow": 24 //Only check for duplicates within the last 24 hours - Stories older than 24 hours won't be compared (allows for follow-up coverage)
+    "titleSimilarityThreshold": 0.8,
+    "contentSimilarityThreshold": 0.7,
+    "timeWindow": 24
   }
 }
