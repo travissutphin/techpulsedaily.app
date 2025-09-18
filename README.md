@@ -24,13 +24,19 @@ cp .env.example .env.local
 # - Your site URL
 ```
 
+### 2.5. Set Up Admin Security
+Edit `config/auth.json`:
+- **username**: Keep as "admin" (or change if desired)
+- **passwordHash**: Use https://bcrypt-generator.com/ to hash your password
+- **apiKey**: Use https://randomkeygen.com/ (copy any 32+ char string)
+
 ### 3. Run
 ```bash
 npm run dev
 ```
 
 - **View site**: http://localhost:3000
-- **Admin panel**: http://localhost:3000/admin (password in .env.local)
+- **Admin panel**: http://localhost:3000/admin (login with username: "admin" and your password from config/auth.json)
 
 ## 📋 What This Does
 
@@ -38,7 +44,7 @@ npm run dev
 2. **Filters** using AI to find quality content worth reading
 3. **Queues** articles for your review in the admin panel
 4. **Publishes** approved articles as static pages
-5. **No database** - everything runs on JSON and MDX files
+5. **No database** - everything runs on JSON and MDX filesNo database - uses JSON files for queue/config and MDX for published articles
 
 ## ⚙️ Essential Configuration
 
@@ -48,11 +54,14 @@ npm run dev
 {
   "reddit": {
     "subreddits": [
-      {"name": "technology", "minScore": 100}  // Add your favorite subreddits
+      {"name": "technology", "minScore": 100, "enabled": true},
+      {"name": "programming", "minScore": 50, "enabled": true},
+      {"name": "webdev", "minScore": 75, "enabled": false}  // Disabled for now
     ]
   },
   "rssFeeds": [
-    {"name": "TechCrunch", "url": "https://techcrunch.com/feed/"}  // Add RSS feeds
+    {"name": "TechCrunch", "url": "https://techcrunch.com/feed/", "enabled": true},
+    {"name": "ArsTechnica", "url": "https://arstechnica.com/feed/", "enabled": true}
   ]
 }
 ```
@@ -62,12 +71,15 @@ npm run dev
 ```json
 {
   "qualityThresholds": {
-    "minimumEngagement": {"reddit": 50},  // Min upvotes
-    "maximumAge": 48  // Hours
+    "minimumEngagement": {
+      "reddit": 50,      // Min Reddit upvotes
+      "hackernews": 25   // Min HN points
+    },
+    "maximumAge": 48     // Hours old
   },
   "contentFilters": {
-    "excludeKeywords": ["clickbait", "politics"],  // Block these
-    "requireKeywords": {"tech": ["AI", "software", "startup"]}  // Must have one
+    "excludeKeywords": ["clickbait", "politics", "crypto"],  // Block these words
+    "requireKeywords": ["AI", "software", "startup", "tech"]  // Must contain at least one
   }
 }
 ```
@@ -85,123 +97,173 @@ npm run dev
 
 ## 👨‍💼 Admin Workflow
 
-1. **Automatic Scraping**: Runs 3x daily (or manually via admin panel)
+1. **Manual Scraping**: Click "Trigger Scraping" button in admin panel
 2. **Review Queue**: Check `/admin` to see pending articles
-3. **One-Click Actions**: Approve ✅ or Reject ❌
-4. **Auto-Publish**: Approved articles become live pages
-
-### Admin Commands
-```bash
-npm run scrape    # Manually fetch new articles
-npm run publish   # Force-publish approved queue
-```
+3. **One-Click Actions**: Approve ✅ or Reject ❌ each article
+4. **Auto-Publish**: Approved articles immediately become live pages
+5. **Track Status**: Articles move between folders:
+   - `data/queue/pending/` → New articles awaiting review
+   - `data/queue/approved/` → Ready to publish
+   - `data/queue/rejected/` → Declined articles (can be deleted)
 
 ## 📁 Where Everything Lives
 
 ```
-config/           → Your settings (JSON files)
+.env.local        → Your API keys and passwords (never commit this!)
+config/           → Your settings (JSON files - sources, filters, site)
 content/posts/    → Published articles (MDX files)
-data/queue/       → Articles waiting for review
-public/           → Images, logos, legal docs
+data/queue/       → Article workflow folders:
+  ├── pending/    → New articles waiting for review
+  ├── approved/   → Approved articles ready to publish
+  └── rejected/   → Declined articles (safe to delete)
+public/           → Images, logos, and markdown files for legal pages
+scripts/          → Setup and utility scripts
 src/              → App code (you probably won't need to touch)
+
+# Auto-generated (don't edit):
+.next/            → Build output files
+node_modules/     → Installed dependencies
 ```
 
 ## 🔧 Common Tasks
 
 ### Add a New RSS Feed
-Edit `config/sources.json`:
+Edit `config/sources.json` (test the URL in your browser first):
 ```json
 "rssFeeds": [
-  {"name": "New Blog", "url": "https://example.com/feed", "enabled": true}
+  {"name": "Verge", "url": "https://www.theverge.com/rss/index.xml", "enabled": true}
 ]
 ```
 
-### Change Filtering Rules
-Edit `config/filters.json` to adjust quality thresholds or blocked keywords.
+### Block Unwanted Content
+Edit `config/filters.json` to add blocked keywords:
+```json
+"excludeKeywords": ["crypto", "nft", "blockchain", "web3"]
+```
 
-### Customize AI Prompts
-Edit `config/claude.json` to change how AI evaluates and summarizes content.
+### Raise Quality Standards
+Edit `config/filters.json` to increase minimum scores:
+```json
+"qualityThresholds": {
+  "minimumEngagement": {"reddit": 100, "hackernews": 50},  // Was 50/25
+  "minimumQualityScore": 7  // Was 6
+}
+```
+
+### Customize AI Evaluation
+Edit `config/claude.json` to modify how articles are evaluated:
+```json
+{
+  "prompts": {
+    "evaluation": "Focus on technical depth and practical applications",
+    "summary": "Write concise 2-sentence summaries, emphasize key innovations"
+  }
+}
+```
 
 ### Add Legal Pages
-Drop markdown files in `public/`:
-- privacy_policy.md
-- terms_of_service.md
-- cookie_policy.md
+Create markdown files in `public/` (automatically linked in footer):
+```
+public/privacy_policy.md     → yoursite.com/privacy_policy
+public/terms_of_service.md   → yoursite.com/terms_of_service
+public/cookie_policy.md      → yoursite.com/cookie_policy
+```
+
+### Clear Queue and Start Fresh
+Delete all JSON files in these folders:
+```bash
+data/queue/pending/*.json    # Remove pending articles
+data/queue/rejected/*.json   # Remove rejected articles
+data/queue/approved/*.json   # Remove approved (unpublished) articles
+```
+
+### Change Admin Password
+Edit `config/auth.json`:
+1. Use an online bcrypt generator: https://bcrypt-generator.com/
+2. Enter your new password, generate hash
+3. Copy the hash to `passwordHash` in config/auth.json
+4. Restart the server
+
+### Backup Your Content
+Before updates, backup these folders:
+```
+config/           # Your settings (including auth.json with your password)
+content/posts/    # Published articles
+data/queue/       # Pending articles
+.env.local        # Your credentials
+```
 
 ## 🚀 Deploy to Production
 
-### Option 1: Vercel (Easiest)
-1. Push to GitHub
-2. Import to Vercel
-3. Add environment variables
-4. Deploy
+### Simple SFTP/Server Deploy
+1. Run build locally:
+   ```bash
+   npm run build
+   ```
 
-### Option 2: Any Node.js Host
+2. Upload these folders to your server:
+   ```
+   .next/          → Build files
+   public/         → Images and assets
+   config/         → Your settings
+   content/        → Published articles
+   data/           → Article queue
+   node_modules/   → Dependencies
+   package.json    → App configuration
+   .env.local      → Your API keys (create on server)
+   ```
+
+3. On your server, create `.env.local`:
+   ```
+   CLAUDE_API_KEY=your-key
+   ADMIN_PASSWORD=strong-password
+   SITE_URL=https://your-domain.com
+   ```
+
+4. Start the app:
+   ```bash
+   npm start  # Runs on port 3000
+   ```
+
+**Note:** Use a process manager like PM2 to keep it running:
 ```bash
-npm run build
-npm start
-```
-
-### Set Environment Variables
-```
-CLAUDE_API_KEY=your-key
-ADMIN_PASSWORD=strong-password
-SITE_URL=https://your-domain.com
-NODE_ENV=production
+pm2 start npm --name "techpulse" -- start
 ```
 
 ## 🛡️ Security Checklist
 
-- [ ] Changed admin password from default
-- [ ] Created new Claude API key
-- [ ] Added `.env.local` to `.gitignore`
-- [ ] Using HTTPS in production
-- [ ] Regularly update dependencies (`npm update`)
+**Critical (do immediately):**
+- [ ] Updated config/auth.json with your own password hash and API key
+- [ ] Set strong admin password (min 12 chars, mixed case, numbers, symbols)
+- [ ] Using HTTPS in production (required for secure admin access)
+- [ ] Generated your own Claude API key from https://console.anthropic.com/
 
-## 📊 How It Works
+**Built-in Protections:**
+- [✓] Rate limiting on login (5 attempts, then 15-minute lockout)
 
-```
-Reddit/HN/RSS → Scraper → AI Filter → Admin Queue → Your Review → Published
-```
+**File Security:**
+- [ ] Added `.env.local` to `.gitignore` (never commit passwords)
+- [ ] Set file permissions on server: `chmod 600 .env.local`
+- [ ] Backup `data/` and `content/` folders regularly
 
-1. **Scrapers** fetch from configured sources
-2. **AI** evaluates quality (1-10 score)
-3. **Filters** remove duplicates and junk
-4. **Queue** holds articles for review
-5. **Admin** approves best content
-6. **Publisher** creates static pages
-
-## 🆘 Troubleshooting
-
-**No articles appearing?**
-- Check Claude API key in `.env.local`
-- Verify sources are enabled in `config/sources.json`
-- Lower quality thresholds in `config/filters.json`
-
-**Can't access admin?**
-- Check password in `.env.local`
-- Clear browser cookies
-- Restart dev server
-
-**Scraping fails?**
-- Check internet connection
-- Verify RSS feed URLs are valid
-- Reddit/HN might be rate limiting (wait 1 hour)
-
-## 💡 Pro Tips
-
-- **Start small**: Enable just 1-2 sources initially
-- **Adjust filters**: Too much content? Raise thresholds. Too little? Lower them.
-- **Peak times**: Scrape at 6am, noon, 6pm for best content
-- **RSS quality**: Official blogs (OpenAI, Google) have best signal/noise ratio
-- **Manual control**: Use admin panel's "Trigger Scraping" during breaking news
+**Maintenance:**
+- [ ] Regularly update dependencies: `npm update`
+- [ ] Monitor `data/queue/rejected/` folder size (clean periodically)
+- [ ] Review admin access logs if suspicious activity
 
 ## 📝 Requirements
 
-- Node.js 18+
-- Claude API key (get from [Anthropic Console](https://console.anthropic.com/))
-- 500MB free disk space
-- That's it - no database needed!
+**System:**
+- Node.js 18+ and npm (Node.js 20+ recommended)
+- 1GB+ free disk space (for dependencies and content)
+- Windows, Mac, or Linux
+- Internet connection for scraping and AI processing
+
+**API Access:**
+- Claude API key from [Anthropic Console](https://console.anthropic.com/)
+- Note: Requires paid Anthropic account (~$0.01-0.03 per article processed)
+
+**That's it - no database needed!**
 
 ## 🤝 Need Help?
 
