@@ -8,8 +8,8 @@ Automatically collect, filter, and publish tech news from Reddit, Hacker News, a
 
 ### 1. Clone & Install
 ```bash
-git clone [your-repo-url]
-cd tech-news-aggregator
+git clone https://github.com/travissutphin/techpulsedaily.app.git [my-project]
+cd [my-project]
 npm install
 ```
 
