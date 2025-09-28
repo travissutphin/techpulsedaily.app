@@ -1,0 +1,64 @@
+{
+  "qualityThresholds": {
+    "minimumEngagement": {
+      "reddit": 50,
+      "hackernews": 50
+    },
+    "minimumContentLength": 100,
+    "maximumAge": 48
+  },
+  "contentFilters": {
+    "excludeKeywords": [
+      "clickbait",
+      "you won't believe",
+      "shocking",
+      "doctors hate this",
+      "one weird trick",
+      "trump",
+      "politics",
+      "election",
+      "biden",
+      "congress",
+      "senate",
+      "republican",
+      "democrat",
+      "political",
+      "vaccine",
+      "covid",
+      "coronavirus",
+      "pandemic",
+      "crime",
+      "shooting",
+      "murder",
+      "arrest"
+    ],
+    "requireKeywords": {
+      "ai": ["artificial intelligence", "machine learning", "AI", "ML", "neural", "GPT", "LLM", "automation"],
+      "tech": ["technology", "software", "hardware", "programming", "development", "innovation", "startup"]
+    }
+  },
+  "sourceReliability": {
+    "trusted": [
+      "openai.com",
+      "google.com",
+      "microsoft.com",
+      "techcrunch.com",
+      "arstechnica.com",
+      "mit.edu",
+      "stanford.edu",
+      "github.com",
+      "en.wikipedia.org",
+      "wired.com",
+      "techradar.com"
+    ],
+    "questionable": [
+      "dailymail.co.uk",
+      "buzzfeed.com"
+    ]
+  },
+  "duplicateDetection": {
+    "titleSimilarityThreshold": 0.8,
+    "contentSimilarityThreshold": 0.7,
+    "timeWindow": 24
+  }
+}

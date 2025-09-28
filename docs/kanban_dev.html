@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<!--
+======================================
+  KANBAN BOARD - VERSION INFORMATION
+======================================
+  Version: 2.0.0
+  Release Date: 2025-09-26
+  Author: DevOps AI Team
+
+  CHANGELOG:
+  v2.0.0 (2025-09-26)
+  - UI upgrade to match Content Calendar design
+  - Added Font Awesome icons for better visual hierarchy
+  - Gradient column headers with color coding
+  - Sprint statistics bar
+  - Enhanced card styling with better hover effects
+  - Improved typography and spacing
+  
+  v1.0.0 (2025-09-24)
+  - Initial release
+  - 5-column kanban structure (Backlog → Sprint → QA → Staged → Live)
+  - Mobile-responsive design
+  - Claude Code integration markers
+  - Card template system with priority/assignee support
+
+  FEATURES:
+  - Self-contained single HTML file
+  - Font Awesome icons via CDN
+  - Responsive design (desktop/tablet/mobile)
+  - Print-friendly stylesheet
+  - Accessibility support (ARIA labels, keyboard navigation)
+  - Team member assignment system
+  - Priority color coding (high/medium/low)
+  - Sprint statistics dashboard
+
+  USAGE:
+  Copy this file to any project directory and open in browser.
+  AI team can programmatically update cards using comment markers.
+======================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps Kanban Board - Sprint Management v2.0.0</title>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .kanban-container {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .kanban-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .kanban-header h1 {
+      color: #1f2937;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .kanban-header .sprint-info {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .kanban-footer {
+      text-align: center;
+      margin-top: 32px;
+      padding: 16px;
+    }
+
+    .kanban-footer p {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    /* Statistics Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      min-height: 70vh;
+    }
+
+    .kanban-column {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      min-height: 400px;
+    }
+
+    .column-header {
+      padding: 14px;
+      border-bottom: 2px solid #e5e7eb;
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* Column-specific header colors */
+    .column-backlog .column-header { 
+      border-bottom-color: #ddd6fe; 
+      background: linear-gradient(135deg, #f3f0ff 0%, #ddd6fe 100%); 
+    }
+    .column-sprint .column-header { 
+      border-bottom-color: #bfdbfe; 
+      background: linear-gradient(135deg, #eff6ff 0%, #bfdbfe 100%); 
+    }
+    .column-qa .column-header { 
+      border-bottom-color: #fed7aa; 
+      background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); 
+    }
+    .column-staged .column-header { 
+      border-bottom-color: #fde68a; 
+      background: linear-gradient(135deg, #fefce8 0%, #fde68a 100%); 
+    }
+    .column-live .column-header { 
+      border-bottom-color: #bbf7d0; 
+      background: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%); 
+    }
+
+    .column-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #374151;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .column-icon {
+      font-size: 1.1rem;
+    }
+
+    .column-count {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .column-content {
+      flex: 1;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-id {
+      font-size: 0.7rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .card-type {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      background: #e0e7ff;
+      color: #4c1d95;
+    }
+
+    /* Task type colors */
+    .type-feature { background: #dbeafe; color: #1e40af; }
+    .type-bug { background: #fee2e2; color: #b91c1c; }
+    .type-hotfix { background: #fef3c7; color: #92400e; }
+    .type-refactor { background: #e9d5ff; color: #6b21a8; }
+    .type-test { background: #d1fae5; color: #065f46; }
+    .type-docs { background: #fed7e2; color: #831843; }
+
+    .card-priority {
+      font-size: 1.1rem;
+    }
+
+    .priority-high { color: #ef4444; }
+    .priority-medium { color: #eab308; }
+    .priority-low { color: #22c55e; }
+
+    .card-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .card-description {
+      font-size: 0.7rem;
+      color: #4b5563;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    /* Status badges */
+    .card-status {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .status-completed { background: #d1fae5; color: #065f46; }
+    .status-blocked { background: #fee2e2; color: #b91c1c; }
+    .status-review { background: #fef3c7; color: #92400e; }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      color: #6b7280;
+      padding-top: 6px;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .card-assignee {
+      font-weight: 500;
+      color: #4b5563;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-date {
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+
+    /* Tablet Styles */
+    @media (max-width: 1280px) {
+      .kanban-board {
+        grid-template-columns: repeat(3, 1fr);
+        overflow-x: auto;
+        padding-bottom: 16px;
+      }
+
+      .kanban-column {
+        min-width: 300px;
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 640px) {
+      body {
+        padding: 8px;
+      }
+
+      .kanban-board {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .kanban-column {
+        min-width: auto;
+        min-height: auto;
+      }
+
+      .stats-bar {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .column-header {
+        padding: 12px;
+      }
+
+      .column-content {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 10px;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .kanban-board {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="kanban-container">
+    <div class="kanban-header">
+      <h1>DevOps Kanban Board</h1>
+      <div class="sprint-info">Sprint 42 (Sep 23-Oct 6, 2025) | Release: v2.4.0</div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Sprint Tasks</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">4</div>
+        <div class="stat-label">In Progress</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">90%</div>
+        <div class="stat-label">Sprint Health</div>
+      </div>
+    </div>
+
+    <div class="kanban-board">
+      <!-- Backlog Column -->
+      <div class="kanban-column column-backlog">
+        <div class="column-header">
+          <div class="column-title">
+            <span class="column-icon">📋</span>
+            Backlog
+          </div>
+          <div class="column-count">4 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_BACKLOG_START -->
+
+
+          <div class="card" data-id="008" data-priority="high" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#008</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Missing Claude API Key Configuration</h4>
+            <p class="card-description">App requires Claude API key for content evaluation. Admin dashboard will fail on scraping operations without it.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-09-26</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="009" data-priority="medium" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#009</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Missing Favicon and Brand Assets</h4>
+            <p class="card-description">404 errors for favicon.ico and missing /images/techpulsedaily.png. Breaks admin login UI and site branding.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Aesthetica]
+              </span>
+              <span class="card-date">2025-09-26</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="010" data-priority="medium" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#010</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Missing Content Directories Structure</h4>
+            <p class="card-description">Required directories missing: data/queue/pending, data/queue/approved, data/queue/rejected. App cannot store scraped content.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-09-26</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="011" data-priority="low" data-type="test">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#011</span>
+                <span class="card-type type-test">Test</span>
+              </div>
+              <span class="card-priority priority-low">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">No Error Handling for API Rate Limits</h4>
+            <p class="card-description">Reddit/RSS scraping lacks rate limiting protection. Could cause API blocks and service disruption.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Verity]
+              </span>
+              <span class="card-date">2025-09-27</span>
+            </div>
+          </div>
+          <!-- KANBAN_BACKLOG_END -->
+        </div>
+      </div>
+
+      <!-- Sprint Column -->
+      <div class="kanban-column column-sprint">
+        <div class="column-header">
+          <div class="column-title">
+            <span class="column-icon">🚀</span>
+            Sprint
+          </div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_SPRINT_START -->
+          <!-- KANBAN_SPRINT_END -->
+        </div>
+      </div>
+
+      <!-- QA Column -->
+      <div class="kanban-column column-qa">
+        <div class="column-header">
+          <div class="column-title">
+            <span class="column-icon">🧪</span>
+            QA
+          </div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_QA_START -->
+          <!-- KANBAN_QA_END -->
+        </div>
+      </div>
+
+      <!-- Staged Column -->
+      <div class="kanban-column column-staged">
+        <div class="column-header">
+          <div class="column-title">
+            <span class="column-icon">📦</span>
+            Staged
+          </div>
+          <div class="column-count">0 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_STAGED_START -->
+          <!-- KANBAN_STAGED_END -->
+        </div>
+      </div>
+
+      <!-- Live Column -->
+      <div class="kanban-column column-live">
+        <div class="column-header">
+          <div class="column-title">
+            <span class="column-icon">✅</span>
+            Live
+          </div>
+          <div class="column-count">2 tasks</div>
+        </div>
+        <div class="column-content">
+          <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="006" data-priority="high" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#006</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Core Processing Libraries Investigation</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ RESOLVED: Libraries exist and functional. processor.ts & publisher.ts working correctly. Article publishing confirmed operational.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Syntax]
+              </span>
+              <span class="card-date">2025-09-26</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="007" data-priority="high" data-type="hotfix">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#007</span>
+                <span class="card-type type-hotfix">Hotfix</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Admin Password Security Implementation</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ SECURED: Strong password implemented (tech33Jaybell##). Authentication working. Security warnings cleared. No longer using default credentials.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Sentinal]
+              </span>
+              <span class="card-date">2025-09-27</span>
+            </div>
+          </div>
+          <!-- KANBAN_LIVE_END -->
+        </div>
+      </div>
+    </div>
+
+    <div class="kanban-footer">
+      <p>DevOps Kanban v2.0.0 | Icons by Font Awesome | Updated: <span id="lastUpdate">Sep 26, 2025</span></p>
+    </div>
+  </div>
+
+  <!-- CARD_TEMPLATE_START -->
+  <!--
+  <div class="card" data-id="{ID}" data-priority="{PRIORITY}" data-type="{TYPE}">
+    <div class="card-header">
+      <div class="card-meta">
+        <span class="card-id">#{ID}</span>
+        <span class="card-type type-{TYPE}">{TYPE}</span>
+      </div>
+      <span class="card-priority priority-{PRIORITY}">
+        <i class="fas fa-circle"></i>
+      </span>
+    </div>
+    <h4 class="card-title">{TITLE}</h4>
+    <span class="card-status status-{STATUS}">{STATUS_TEXT}</span>
+    <p class="card-description">{DESCRIPTION}</p>
+    <div class="card-footer">
+      <span class="card-assignee">
+        <i class="fas fa-user"></i> {ASSIGNEE}
+      </span>
+      <span class="card-date">{DATE}</span>
+    </div>
+  </div>
+  
+  Task Types: feature, bug, hotfix, refactor, test, docs
+  Priority: high, medium, low
+  Status: completed, blocked, review
+  -->
+  <!-- CARD_TEMPLATE_END -->
+
+  <script>
+    // DevOps Kanban Board - Read-only view with auto-updating counts
+    // Cards can be modified by AI team using comment markers
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateColumnCounts();
+      updateStats();
+    });
+
+    function updateColumnCounts() {
+      const columns = [
+        { marker: 'backlog', selector: '.column-backlog' },
+        { marker: 'sprint', selector: '.column-sprint' },
+        { marker: 'qa', selector: '.column-qa' },
+        { marker: 'staged', selector: '.column-staged' },
+        { marker: 'live', selector: '.column-live' }
+      ];
+
+      columns.forEach(column => {
+        const columnElement = document.querySelector(column.selector);
+        if (columnElement) {
+          const cards = columnElement.querySelectorAll('.card');
+          const countElement = columnElement.querySelector('.column-count');
+          if (countElement) {
+            const count = cards.length;
+            countElement.textContent = `${count} task${count !== 1 ? 's' : ''}`;
+          }
+        }
+      });
+    }
+
+    function updateStats() {
+      // Calculate sprint statistics
+      const totalCards = document.querySelectorAll('.card').length;
+      const sprintCards = document.querySelectorAll('.column-sprint .card, .column-qa .card, .column-staged .card').length;
+      const completedCards = document.querySelectorAll('.status-completed').length;
+      
+      // Update displayed values if elements exist
+      const statValues = document.querySelectorAll('.stat-value');
+      if (statValues.length >= 3) {
+        statValues[0].textContent = totalCards; // Sprint Tasks
+        statValues[1].textContent = sprintCards; // In Progress
+        statValues[2].textContent = completedCards; // Completed
+      }
+    }
+
+    // Accessibility: Add keyboard navigation
+    document.querySelectorAll('.card').forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'article');
+      card.setAttribute('aria-label', 'Task card: ' + card.querySelector('.card-title').textContent);
+    });
+
+    // Update last modified date
+    const lastUpdateElement = document.getElementById('lastUpdate');
+    if (lastUpdateElement) {
+      lastUpdateElement.textContent = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+  </script>
+</body>
+</html>
