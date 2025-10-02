@@ -2,39 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://techpulsedaily.app</loc>
-    <lastmod>2025-10-02</lastmod>
+    <lastmod>2025-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
   <url>
-    <loc>https://techpulsedaily.app/posts/openai-announces-strategic-collaboration-with-japan-s-digita</loc>
-    <lastmod>2025-10-02</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://techpulsedaily.app/archive</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://techpulsedaily.app/posts/meet-the-end-of-life-planning-startup-co-founded-by-nba-all-</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://techpulsedaily.app/privacy</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://techpulsedaily.app/posts/ai-is-dreaming-up-millions-of-new-materials-are-they-any-goo</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://techpulsedaily.app/terms</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://techpulsedaily.app/posts/samsung-and-sk-join-openai-s-stargate-initiative-to-advance-</loc>
-    <lastmod>2025-10-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://techpulsedaily.app/cookies</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://techpulsedaily.app/posts/d-is-it-normal-for-a-cv-ml-researcher-with-600-citations-and</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://techpulsedaily.app/disclaimer</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
