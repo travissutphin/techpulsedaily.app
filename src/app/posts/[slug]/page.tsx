@@ -605,35 +605,64 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="border-t pt-6 mt-6 border-tp-border">
             <div className="text-center">
               <h3 className="text-lg font-semibold mb-3 text-tp-text-primary">
-                <i className="fas fa-heart"></i> Found this useful?
+                <i className="fas fa-share-alt"></i> Share this article
               </h3>
               <p className="mb-4 text-tp-text-secondary">
-                Share it with your network and join the conversation about the latest in tech!
+                Share this insight with your network on your favorite platform!
               </p>
-              <div className="flex justify-center gap-4">
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.site.url}/posts/${post.slug}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-tp-text-muted hover:text-tp-primary transition-colors"
-                >
-                  <i className="fab fa-twitter"></i>
-                </a>
+
+              {/* User's social sharing buttons */}
+              <div className="flex justify-center gap-3 mb-8">
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${siteConfig.site.url}/posts/${post.slug}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-tp-text-muted hover:text-tp-primary transition-colors"
+                  className="tp-btn-secondary px-4 py-2 flex items-center gap-2 hover:bg-tp-primary hover:text-white transition-all"
+                  title="Share on LinkedIn"
                 >
                   <i className="fab fa-linkedin"></i>
+                  <span className="text-sm">LinkedIn</span>
+                </a>
+                <a
+                  href={`https://reddit.com/submit?url=${encodeURIComponent(`${siteConfig.site.url}/posts/${post.slug}`)}&title=${encodeURIComponent(post.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tp-btn-secondary px-4 py-2 flex items-center gap-2 hover:bg-[#FF4500] hover:text-white transition-all"
+                  title="Share on Reddit"
+                >
+                  <i className="fab fa-reddit"></i>
+                  <span className="text-sm">Reddit</span>
+                </a>
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`${siteConfig.site.url}/posts/${post.slug}`)}&via=travissutphin`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tp-btn-secondary px-4 py-2 flex items-center gap-2 hover:bg-black hover:text-white transition-all"
+                  title="Share on X/Twitter"
+                >
+                  <i className="fab fa-x-twitter"></i>
+                  <span className="text-sm">X</span>
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${siteConfig.site.url}/posts/${post.slug}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tp-btn-secondary px-4 py-2 flex items-center gap-2 hover:bg-[#1877F2] hover:text-white transition-all"
+                  title="Share on Facebook"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                  <span className="text-sm">Facebook</span>
                 </a>
                 <a
                   href={`mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(`Check out this article: ${siteConfig.site.url}/posts/${post.slug}`)}`}
-                  className="text-tp-text-muted hover:text-tp-primary transition-colors"
+                  className="tp-btn-secondary px-4 py-2 flex items-center gap-2 hover:bg-tp-surface-hover transition-all"
+                  title="Share via Email"
                 >
                   <i className="fas fa-envelope"></i>
+                  <span className="text-sm">Email</span>
                 </a>
               </div>
+
             </div>
           </div>
         </article>
@@ -641,25 +670,86 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Footer */}
       <footer className="tp-nav border-t border-tp-border mt-24">
-        <div className="max-w-6xl mx-auto px-4 py-8 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <img
-              src="/images/techpulsedaily.png"
-              alt="TechPulse Daily Logo"
-              className="tp-logo"
-            />
-            <div>
-              <h3 className="font-bold text-tp-text-primary">
-                {siteConfig.site.name}
-              </h3>
-              <p className="text-sm text-tp-text-secondary">
-                AI-Curated Tech News
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-8 text-center md:text-left">
+            <div className="md:col-span-4">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+                <img
+                  src="/images/techpulsedaily.png"
+                  alt="TechPulse Daily Logo"
+                  className="tp-logo"
+                />
+                <div>
+                  <h3 className="font-bold text-tp-text-primary">
+                    {siteConfig.site.name}
+                  </h3>
+                  <p className="text-sm text-tp-text-secondary">
+                    AI-Curated Tech News
+                  </p>
+                </div>
+              </div>
+              <p className="text-sm text-tp-text-muted">
+                Quality tech news for busy professionals. Get insights for meaningful conversations.
               </p>
             </div>
+
+            <div className="md:col-span-2">
+              <h4 className="font-semibold mb-4 text-tp-text-primary">
+                Quick Links
+              </h4>
+              <div className="space-y-2">
+                <Link href="/" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Latest News
+                </Link>
+                <Link href="/archive" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Article Archive
+                </Link>
+              </div>
+            </div>
+
+            <div className="md:col-span-2">
+              <h4 className="font-semibold mb-4 text-tp-text-primary">
+                Connect
+              </h4>
+              <div className="flex justify-center md:justify-start gap-3 mb-4">
+                <a href="https://linkedin.com/travis-sutphin-4472a1a/" target="_blank" rel="noopener noreferrer" className="text-tp-text-muted hover:text-tp-primary transition-colors">
+                  <i className="fab fa-linkedin"></i>
+                </a>
+                <a href="https://reddit.com/r/travissutphin/" target="_blank" rel="noopener noreferrer" className="text-tp-text-muted hover:text-tp-primary transition-colors">
+                  <i className="fab fa-reddit"></i>
+                </a>
+                <a href="https://travissutphin.com" target="_blank" rel="noopener noreferrer" className="text-tp-text-muted hover:text-tp-primary transition-colors">
+                  <i className="fas fa-globe"></i>
+                </a>
+                <a href="https://github.com/travissutphin?tab=repositories" target="_blank" rel="noopener noreferrer" className="text-tp-text-muted hover:text-tp-primary transition-colors">
+                  <i className="fab fa-github"></i>
+                </a>
+              </div>
+              <p className="text-xs text-tp-text-disabled">
+                &copy; 2025 {siteConfig.site.name}
+              </p>
+            </div>
+
+            <div className="md:col-span-2">
+              <h4 className="font-semibold mb-4 text-tp-text-primary">
+                Legal
+              </h4>
+              <div className="space-y-2">
+                <Link href="/privacy" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Terms of Service
+                </Link>
+                <Link href="/cookies" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Cookie Policy
+                </Link>
+                <Link href="/disclaimer" className="block text-sm hover:text-tp-primary transition-colors text-tp-text-muted">
+                  Disclaimer
+                </Link>
+              </div>
+            </div>
           </div>
-          <p className="text-sm text-tp-text-muted">
-            &copy; 2025 {siteConfig.site.name}. Quality tech news for busy professionals.
-          </p>
         </div>
       </footer>
     </div>

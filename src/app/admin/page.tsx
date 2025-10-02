@@ -38,13 +38,15 @@ export default function AdminDashboard() {
   const [apiKey, setApiKey] = useState('');
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (authenticated && apiKey) {
+      fetchData();
+    }
+  }, [authenticated, apiKey]);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      const headers = apiKey ? { 'x-api-key': apiKey } : {};
+      const headers: HeadersInit = apiKey ? { 'x-api-key': apiKey } : {};
       const [pendingRes, publishedRes, statsRes] = await Promise.all([
         fetch('/api/admin/articles?type=pending', { headers }),
         fetch('/api/admin/articles?type=published', { headers }),
@@ -245,11 +247,11 @@ export default function AdminDashboard() {
             <div className="flex space-x-3">
               <button
                 onClick={triggerPublishing}
-                disabled={publishing || (stats?.queue.approved === 0)}
+                disabled={publishing || (stats?.queue?.approved === 0)}
                 className="tp-btn-primary disabled:opacity-50"
               >
                 <i className="fas fa-upload mr-2"></i>
-                {publishing ? 'Publishing...' : `Publish Articles (${stats?.queue.approved || 0})`}
+                {publishing ? 'Publishing...' : `Publish Articles (${stats?.queue?.approved || 0})`}
               </button>
               <button
                 onClick={triggerScraping}

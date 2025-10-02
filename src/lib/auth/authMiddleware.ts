@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import authConfig from '@/config/auth.json';
+import authConfig from '../../../config/auth.json';
 
 const API_KEY_HEADER = 'x-api-key';
 

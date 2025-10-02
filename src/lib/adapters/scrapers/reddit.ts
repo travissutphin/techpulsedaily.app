@@ -15,6 +15,17 @@ export class RedditScraper implements IScraperAdapter {
         }
       });
 
+      if (response.status === 429) {
+        console.warn(`Rate limit hit for r/${subredditName}, backing off...`);
+        await this.delay(5000);
+        return [];
+      }
+
+      if (response.status === 503) {
+        console.warn(`Reddit service unavailable for r/${subredditName}`);
+        return [];
+      }
+
       if (!response.ok) {
         throw new Error(`Reddit API returned ${response.status}: ${response.statusText}`);
       }

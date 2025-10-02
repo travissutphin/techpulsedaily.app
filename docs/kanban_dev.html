@@ -386,18 +386,18 @@
     <div class="stats-bar">
       <div class="stat-item">
         <div class="stat-value">6</div>
-        <div class="stat-label">Sprint Tasks</div>
+        <div class="stat-label">Total Tasks</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">4</div>
-        <div class="stat-label">In Progress</div>
+        <div class="stat-value">0</div>
+        <div class="stat-label">Sprint Active</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">2</div>
+        <div class="stat-value">5</div>
         <div class="stat-label">Completed</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">90%</div>
+        <div class="stat-value">100%</div>
         <div class="stat-label">Sprint Health</div>
       </div>
     </div>
@@ -414,87 +414,6 @@
         </div>
         <div class="column-content">
           <!-- KANBAN_BACKLOG_START -->
-
-
-          <div class="card" data-id="008" data-priority="high" data-type="bug">
-            <div class="card-header">
-              <div class="card-meta">
-                <span class="card-id">#008</span>
-                <span class="card-type type-bug">Bug</span>
-              </div>
-              <span class="card-priority priority-high">
-                <i class="fas fa-circle"></i>
-              </span>
-            </div>
-            <h4 class="card-title">Missing Claude API Key Configuration</h4>
-            <p class="card-description">App requires Claude API key for content evaluation. Admin dashboard will fail on scraping operations without it.</p>
-            <div class="card-footer">
-              <span class="card-assignee">
-                <i class="fas fa-user"></i> [Flow]
-              </span>
-              <span class="card-date">2025-09-26</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="009" data-priority="medium" data-type="bug">
-            <div class="card-header">
-              <div class="card-meta">
-                <span class="card-id">#009</span>
-                <span class="card-type type-bug">Bug</span>
-              </div>
-              <span class="card-priority priority-medium">
-                <i class="fas fa-circle"></i>
-              </span>
-            </div>
-            <h4 class="card-title">Missing Favicon and Brand Assets</h4>
-            <p class="card-description">404 errors for favicon.ico and missing /images/techpulsedaily.png. Breaks admin login UI and site branding.</p>
-            <div class="card-footer">
-              <span class="card-assignee">
-                <i class="fas fa-user"></i> [Aesthetica]
-              </span>
-              <span class="card-date">2025-09-26</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="010" data-priority="medium" data-type="feature">
-            <div class="card-header">
-              <div class="card-meta">
-                <span class="card-id">#010</span>
-                <span class="card-type type-feature">Feature</span>
-              </div>
-              <span class="card-priority priority-medium">
-                <i class="fas fa-circle"></i>
-              </span>
-            </div>
-            <h4 class="card-title">Missing Content Directories Structure</h4>
-            <p class="card-description">Required directories missing: data/queue/pending, data/queue/approved, data/queue/rejected. App cannot store scraped content.</p>
-            <div class="card-footer">
-              <span class="card-assignee">
-                <i class="fas fa-user"></i> [Flow]
-              </span>
-              <span class="card-date">2025-09-26</span>
-            </div>
-          </div>
-
-          <div class="card" data-id="011" data-priority="low" data-type="test">
-            <div class="card-header">
-              <div class="card-meta">
-                <span class="card-id">#011</span>
-                <span class="card-type type-test">Test</span>
-              </div>
-              <span class="card-priority priority-low">
-                <i class="fas fa-circle"></i>
-              </span>
-            </div>
-            <h4 class="card-title">No Error Handling for API Rate Limits</h4>
-            <p class="card-description">Reddit/RSS scraping lacks rate limiting protection. Could cause API blocks and service disruption.</p>
-            <div class="card-footer">
-              <span class="card-assignee">
-                <i class="fas fa-user"></i> [Verity]
-              </span>
-              <span class="card-date">2025-09-27</span>
-            </div>
-          </div>
           <!-- KANBAN_BACKLOG_END -->
         </div>
       </div>
@@ -540,6 +459,26 @@
         </div>
         <div class="column-content">
           <!-- KANBAN_STAGED_START -->
+          <div class="card" data-id="008" data-priority="high" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#008</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Claude API Key Configuration</h4>
+            <span class="card-status status-completed">✅ QA APPROVED</span>
+            <p class="card-description">✅ VERIFIED: All 5 test cases passed. End-to-end API integration confirmed operational. Error handling verified. Ready for production deployment.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Travis]
+              </span>
+              <span class="card-date">2025-09-29</span>
+            </div>
+          </div>
           <!-- KANBAN_STAGED_END -->
         </div>
       </div>
@@ -594,6 +533,69 @@
                 <i class="fas fa-user"></i> [Sentinal]
               </span>
               <span class="card-date">2025-09-27</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="009" data-priority="medium" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#009</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Missing Favicon and Brand Assets</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ RESOLVED: Assets exist and properly configured. favicon.ico in /src/app/favicon.ico, techpulsedaily.png in /public/images/. Next.js serving correctly.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Aesthetica]
+              </span>
+              <span class="card-date">2025-10-01</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="010" data-priority="medium" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#010</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Missing Content Directories Structure</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ VERIFIED: All required directories exist and operational. /data/queue/pending (40 files), /data/queue/approved (ready), /data/queue/rejected (32 files). Content pipeline functional.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-10-01</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="011" data-priority="low" data-type="test">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#011</span>
+                <span class="card-type type-test">Test</span>
+              </div>
+              <span class="card-priority priority-low">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Enhanced API Rate Limiting</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ ENHANCED: Added explicit 429/503 error handling with 5s backoff. RSS feed validation added. Existing 1-2s rate limiting maintained. Robust error handling implemented.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Verity]
+              </span>
+              <span class="card-date">2025-10-01</span>
             </div>
           </div>
           <!-- KANBAN_LIVE_END -->

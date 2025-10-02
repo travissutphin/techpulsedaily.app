@@ -19,6 +19,12 @@ export class RSScraper implements IScraperAdapter {
     try {
       console.log(`Scraping RSS feed: ${feedName}`);
       const feed = await this.parser.parseURL(feedUrl);
+
+      if (!feed || !feed.items) {
+        console.warn(`No items found in RSS feed: ${feedName}`);
+        return [];
+      }
+
       const articles: Article[] = [];
 
       for (const item of feed.items || []) {

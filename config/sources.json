@@ -4,12 +4,12 @@
     "subreddits": [
       {
         "name": "artificial",
-        "minScore": 50,
+        "minScore": 25,
         "weight": 1.0
       },
       {
         "name": "MachineLearning",
-        "minScore": 100,
+        "minScore": 25,
         "weight": 1.2
       },
       {
@@ -19,12 +19,12 @@
       },
       {
         "name": "technology",
-        "minScore": 200,
+        "minScore": 50,
         "weight": 0.9
       },
       {
         "name": "programming",
-        "minScore": 150,
+        "minScore": 25,
         "weight": 0.7
       }
     ]

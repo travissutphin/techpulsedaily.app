@@ -125,8 +125,8 @@ function extractKeyTakeawayFromContent(content: string) {
   if (summaryMatch) {
     const summaryContent = summaryMatch[1].trim();
 
-    // Look for "Key Takeaway:" at the start of a line
-    const keyTakeawayMatch = summaryContent.match(/^Key Takeaway:\s*([\s\S]*?)(?=\n\n|Why [iI]t Matters:|Brief Context:|$)/);
+    // Look for "Key Takeaway:" anywhere in the summary (not just at start of line)
+    const keyTakeawayMatch = summaryContent.match(/Key Takeaway:\s*([\s\S]*?)(?=\n\n|Why [iI]t Matters:|Brief Context:|$)/m);
     if (keyTakeawayMatch) {
       const keyTakeaway = keyTakeawayMatch[1].trim();
       const condensed = keyTakeaway.length > 350 ? keyTakeaway.substring(0, 350) + '...' : keyTakeaway;
@@ -142,36 +142,36 @@ function extractKeyTakeawayFromContent(content: string) {
       );
     }
 
-    // Look for "Why it Matters:" or "Why It Matters:" section
-    const whyMattersMatch = summaryContent.match(/^Why [iI]t Matters:\s*([\s\S]*?)(?=\n\n|Key Takeaway:|Brief Context:|$)/);
+    // Look for "Why it Matters:" or "Why It Matters:" section (anywhere in summary)
+    const whyMattersMatch = summaryContent.match(/Why [iI]t Matters:\s*([\s\S]*?)(?=\n\n|Key Takeaway:|Brief Context:|$)/m);
     if (whyMattersMatch) {
       const insight = whyMattersMatch[1].trim();
       const formatted = insight.length > 350 ? insight.substring(0, 350) + '...' : insight;
 
       return (
-        <div className="bg-orange-500/10 border-l-4 border-orange-500 p-3 rounded-r-lg">
-          <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-orange-400">
-            <i className="fas fa-bullseye"></i>
-            Why it Matters
+        <div className="tp-key-takeaway">
+          <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-tp-text-primary">
+            <i className="fas fa-lightbulb text-tp-primary"></i>
+            Key Insight
           </h4>
-          <p className="text-tp-text-secondary font-medium text-sm leading-relaxed">{formatted}</p>
+          <p className="font-medium text-sm leading-relaxed">{formatted}</p>
         </div>
       );
     }
 
-    // Look for "Brief Context:" section
-    const contextMatch = summaryContent.match(/^Brief Context:\s*([\s\S]*?)(?=\n\n|Key Takeaway:|Why [iI]t Matters:|$)/);
+    // Look for "Brief Context:" section (anywhere in summary)
+    const contextMatch = summaryContent.match(/Brief Context:\s*([\s\S]*?)(?=\n\n|Key Takeaway:|Why [iI]t Matters:|$)/m);
     if (contextMatch) {
       const context = contextMatch[1].trim();
       const formatted = context.length > 350 ? context.substring(0, 350) + '...' : context;
 
       return (
-        <div className="bg-blue-500/10 border-l-4 border-blue-500 p-3 rounded-r-lg">
-          <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-blue-400">
-            <i className="fas fa-book"></i>
-            Context
+        <div className="tp-key-takeaway">
+          <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-tp-text-primary">
+            <i className="fas fa-lightbulb text-tp-primary"></i>
+            Key Insight
           </h4>
-          <p className="text-tp-text-secondary font-medium text-sm leading-relaxed">{formatted}</p>
+          <p className="font-medium text-sm leading-relaxed">{formatted}</p>
         </div>
       );
     }
@@ -185,15 +185,27 @@ function extractKeyTakeawayFromContent(content: string) {
       const formatted = cleanContent.length > 350 ? cleanContent.substring(0, 350) + '...' : cleanContent;
 
       return (
-        <div className="bg-tp-primary/10 border-l-4 border-tp-primary p-3 rounded-r-lg">
-          <p className="text-tp-text-secondary font-medium text-sm leading-relaxed">{formatted}</p>
+        <div className="tp-key-takeaway">
+          <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-tp-text-primary">
+            <i className="fas fa-lightbulb text-tp-primary"></i>
+            Key Insight
+          </h4>
+          <p className="font-medium text-sm leading-relaxed">{formatted}</p>
         </div>
       );
     }
   }
 
-  // Fallback to description if no summary found
-  return <p className="text-tp-text-muted text-sm">Click to read the full analysis.</p>;
+  // Fallback - no summary found
+  return (
+    <div className="tp-key-takeaway">
+      <h4 className="flex items-center gap-2 text-sm font-semibold mb-2 text-tp-text-primary">
+        <i className="fas fa-lightbulb text-tp-primary"></i>
+        Key Insight
+      </h4>
+      <p className="font-medium text-sm leading-relaxed text-tp-text-muted">Click to read the full analysis.</p>
+    </div>
+  );
 }
 
 function getSourceCode(source: string) {

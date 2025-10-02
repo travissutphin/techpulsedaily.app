@@ -1,8 +1,8 @@
 {
   "qualityThresholds": {
     "minimumEngagement": {
-      "reddit": 50,
-      "hackernews": 50
+      "reddit": 25,
+      "hackernews": 25
     },
     "minimumContentLength": 100,
     "maximumAge": 48
@@ -33,8 +33,7 @@
       "arrest"
     ],
     "requireKeywords": {
-      "ai": ["artificial intelligence", "machine learning", "AI", "ML", "vibe coding", "GPT", "automation", "prompting", "prompt engineering"],
-      "tech": ["technology", "software", "hardware", "programming", "development", "innovation", "startup"]
+      "ai": ["artificial intelligence", "machine learning", "AI", "ML", "vibe coding", "GPT", "automation", "prompting", "prompt engineering", "LLM", "Claude", "ChatGPT", "neural network", "deep learning"]
     }
   },
   "sourceReliability": {

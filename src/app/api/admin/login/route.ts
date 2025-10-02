@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import authConfig from '@/config/auth.json';
+import authConfig from '../../../../../config/auth.json';
 import { rateLimiter } from '@/lib/security/rateLimiter';
 
 export async function POST(request: NextRequest) {
@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const { username, password } = await request.json();
 
     // Check rate limit (using IP address or username)
-    const clientId = request.headers.get('x-forwarded-for') || request.ip || username;
+    const clientId = request.headers.get('x-forwarded-for') || 'unknown-ip' || username;
     const rateLimit = rateLimiter.checkRateLimit(clientId);
 
     if (!rateLimit.allowed) {

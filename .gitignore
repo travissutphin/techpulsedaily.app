@@ -42,6 +42,11 @@ data/logs/
 # queue files - temporary processing data
 data/queue/
 
+# content files
+/*.md
+/content/**/*.mdx
+/data/*.json
+
 # vercel
 .vercel
 

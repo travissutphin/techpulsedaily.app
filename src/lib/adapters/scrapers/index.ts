@@ -111,14 +111,18 @@ export class MasterScraper {
     }
 
     // Check for required keywords (at least one category must match)
-    const hasAI = filters.contentFilters.requireKeywords.ai.some((keyword: string) =>
-      titleAndContent.includes(keyword.toLowerCase())
-    );
-    const hasTech = filters.contentFilters.requireKeywords.tech.some((keyword: string) =>
-      titleAndContent.includes(keyword.toLowerCase())
-    );
+    const requireKeywords = filters.contentFilters.requireKeywords;
 
-    return hasAI || hasTech;
+    // Check if any category has matching keywords
+    for (const category in requireKeywords) {
+      const keywords = requireKeywords[category];
+      const hasMatch = keywords.some((keyword: string) =>
+        titleAndContent.includes(keyword.toLowerCase())
+      );
+      if (hasMatch) return true;
+    }
+
+    return false;
   }
 }
 
