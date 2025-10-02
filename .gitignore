@@ -44,6 +44,7 @@ data/queue/
 
 # content files
 /*.md
+!README.md
 /content/**/*.mdx
 /data/*.json
 
