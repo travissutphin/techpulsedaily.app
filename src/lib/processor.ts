@@ -22,10 +22,38 @@ export class ContentProcessor {
     errors: string[];
   }> {
     console.log('=== Starting Content Processing Cycle ===');
-    
+
     // Clear config cache to ensure we get latest filter settings
     config.clearAllCache();
-    
+
+    const startTime = Date.now();
+    const TIMEOUT_MS = 120000; // 2 minutes - enough for Claude processing but prevents infinite hangs
+
+    try {
+      // Wrap entire process in timeout
+      const processPromise = this.doScrapingCycle();
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Scraping timeout - took longer than 25s')), TIMEOUT_MS)
+      );
+
+      return await Promise.race([processPromise, timeoutPromise]);
+    } catch (error) {
+      console.error('Fatal error during processing cycle:', error);
+      return {
+        scraped: 0,
+        processed: 0,
+        queued: 0,
+        errors: [`Fatal processing error: ${error}`]
+      };
+    }
+  }
+
+  private async doScrapingCycle(): Promise<{
+    scraped: number;
+    processed: number;
+    queued: number;
+    errors: string[];
+  }> {
     const startTime = Date.now();
 
     try {
@@ -70,16 +98,35 @@ export class ContentProcessor {
         }
       }
 
-      // Step 3: Filter for quality and keywords, then add to queue
+      // Step 3: Filter and queue articles (single pass)
       console.log('Step 3: Filtering and queueing articles...');
-      
-      // First filter by keywords
-      const keywordFilteredArticles = this.filterByKeywords(processedArticles);
-      
-      // Then filter by quality
-      const qualityArticles = keywordFilteredArticles.filter(article => 
-        article.qualityScore && article.qualityScore >= 6
-      );
+
+      const qualityArticles = processedArticles.filter(article => {
+        // Quality check
+        if (!article.qualityScore || article.qualityScore < 6) {
+          return false;
+        }
+
+        // Keyword check (inline)
+        const filterConfig = config.getConfig<any>('filters');
+        const requireKeywords = filterConfig?.contentFilters?.requireKeywords || {};
+
+        if (Object.keys(requireKeywords).length > 0) {
+          const searchText = `${article.title} ${article.summary || ''}`.toLowerCase();
+          let hasRequired = false;
+
+          for (const category in requireKeywords) {
+            if (requireKeywords[category].some((kw: string) => searchText.includes(kw.toLowerCase()))) {
+              hasRequired = true;
+              break;
+            }
+          }
+
+          if (!hasRequired) return false;
+        }
+
+        return true;
+      });
 
       if (qualityArticles.length > 0) {
         await this.queue.addToPending(qualityArticles);
@@ -103,12 +150,12 @@ export class ContentProcessor {
 
       return summary;
     } catch (error) {
-      console.error('Fatal error during processing cycle:', error);
+      console.error('Error in scraping cycle:', error);
       return {
         scraped: 0,
         processed: 0,
         queued: 0,
-        errors: [`Fatal processing error: ${error}`]
+        errors: [`Scraping cycle error: ${error}`]
       };
     }
   }
@@ -128,89 +175,7 @@ export class ContentProcessor {
     };
   }
 
-  async duplicateCheck(articles: Article[]): Promise<Article[]> {
-    console.log('Running duplicate detection...');
-    const uniqueArticles: Article[] = [];
-    
-    for (const article of articles) {
-      let isDuplicate = false;
-      
-      for (const existing of uniqueArticles) {
-        const duplicateCheck = await this.claude.checkDuplicate(article, existing);
-        
-        if (duplicateCheck.isDuplicate) {
-          console.log(`Duplicate detected: ${article.title} similar to ${existing.title}`);
-          isDuplicate = true;
-          break;
-        }
-      }
-      
-      if (!isDuplicate) {
-        uniqueArticles.push(article);
-      }
-    }
-    
-    console.log(`Removed ${articles.length - uniqueArticles.length} duplicates`);
-    return uniqueArticles;
-  }
-
-  private filterByKeywords(articles: Article[]): Article[] {
-    try {
-      const filterConfig = config.getConfig<any>('filters');
-      const excludeKeywords = filterConfig?.contentFilters?.excludeKeywords || [];
-      const requireKeywords = filterConfig?.contentFilters?.requireKeywords || {};
-      
-      const filteredArticles = articles.filter(article => {
-        const searchText = `${article.title} ${article.summary || ''}`.toLowerCase();
-        
-        // First check: Does it contain required keywords?
-        let hasRequiredKeyword = false;
-        if (Object.keys(requireKeywords).length > 0) {
-          // Check if article contains any keyword from any category (ai OR tech)
-          for (const category in requireKeywords) {
-            const keywords = requireKeywords[category];
-            const hasKeywordFromCategory = keywords.some((keyword: string) => 
-              searchText.includes(keyword.toLowerCase())
-            );
-            if (hasKeywordFromCategory) {
-              hasRequiredKeyword = true;
-              break;
-            }
-          }
-          
-          if (!hasRequiredKeyword) {
-            console.log(`Filtered out article: "${article.title}" - missing required keywords`);
-            return false;
-          }
-        }
-        
-        // Second check: Does it contain excluded keywords?
-        if (excludeKeywords.length > 0) {
-          const hasExcludedKeyword = excludeKeywords.some((keyword: string) => 
-            searchText.includes(keyword.toLowerCase())
-          );
-          
-          if (hasExcludedKeyword) {
-            console.log(`Filtered out article: "${article.title}" - contains excluded keyword`);
-            return false;
-          }
-        }
-        
-        return true;
-      });
-
-      const filtered = articles.length - filteredArticles.length;
-      if (filtered > 0) {
-        console.log(`Filtered out ${filtered} articles based on keyword filters`);
-        console.log(`Kept ${filteredArticles.length} articles that match required keywords and avoid excluded keywords`);
-      }
-      
-      return filteredArticles;
-    } catch (error) {
-      console.error('Error applying keyword filters:', error);
-      return articles; // Return unfiltered articles if filter config fails
-    }
-  }
+  // Removed - filtering now inline in runScrapingCycle() for efficiency
 
   private delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));

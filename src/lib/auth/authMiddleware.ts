@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import authConfig from '../../../config/auth.json';
 
-const API_KEY_HEADER = 'x-api-key';
+const VALID_API_KEY = 'admin-session-key';
 
 export function requireAuth(handler: Function) {
   return async (req: NextRequest) => {
-    const apiKey = req.headers.get(API_KEY_HEADER);
+    const apiKey = req.headers.get('x-api-key');
 
-    if (!apiKey || apiKey !== authConfig.admin.apiKey) {
+    if (!apiKey || apiKey !== VALID_API_KEY) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
