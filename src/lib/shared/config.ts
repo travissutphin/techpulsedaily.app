@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { PathResolver } from './paths';
 
 export class ConfigManager {
   private static instance: ConfigManager;
@@ -18,7 +19,7 @@ export class ConfigManager {
     }
 
     try {
-      const configPath = path.join(process.cwd(), 'config', `${configName}.json`);
+      const configPath = path.join(PathResolver.configDir, `${configName}.json`);
       const configContent = fs.readFileSync(configPath, 'utf8');
       let config = JSON.parse(configContent);
 

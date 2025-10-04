@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { Article } from '../types';
+import { PathResolver } from '../shared/paths';
 
 export class QueueManager {
-  private baseDir = path.join(process.cwd(), 'data', 'queue');
+  private baseDir = PathResolver.queueDir;
 
   constructor() {
     this.ensureDirectories();
@@ -67,7 +68,7 @@ export class QueueManager {
     }
 
     // Check published articles
-    const contentDir = path.join(process.cwd(), 'content', 'posts');
+    const contentDir = PathResolver.postsDir;
     if (fs.existsSync(contentDir)) {
       const files = fs.readdirSync(contentDir);
       for (const file of files) {
@@ -223,7 +224,7 @@ export class QueueManager {
 
   async getPublishedArticles(): Promise<Article[]> {
     // Get all published articles from the content/posts directory (actual live articles)
-    const contentDir = path.join(process.cwd(), 'content', 'posts');
+    const contentDir = PathResolver.postsDir;
     if (!fs.existsSync(contentDir)) {
       return [];
     }
@@ -328,7 +329,7 @@ export class QueueManager {
       }
 
       // Count published articles from content/posts directory
-      const contentDir = path.join(process.cwd(), 'content', 'posts');
+      const contentDir = PathResolver.postsDir;
       if (fs.existsSync(contentDir)) {
         const files = fs.readdirSync(contentDir);
         stats.published = files.filter(file => file.endsWith('.mdx')).length;
