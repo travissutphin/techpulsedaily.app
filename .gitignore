@@ -45,8 +45,8 @@ data/queue/
 # content files
 /*.md
 !README.md
-# Allow committing published articles
-# /content/**/*.mdx
+# Exclude published articles (stored on Railway volume, not in git)
+/content/**/*.mdx
 /data/*.json
 
 # vercel
