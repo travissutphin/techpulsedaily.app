@@ -45,7 +45,8 @@ data/queue/
 # content files
 /*.md
 !README.md
-/content/**/*.mdx
+# Allow committing published articles
+# /content/**/*.mdx
 /data/*.json
 
 # vercel
