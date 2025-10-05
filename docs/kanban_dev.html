@@ -385,7 +385,7 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-value">13</div>
+        <div class="stat-value">14</div>
         <div class="stat-label">Total Tasks</div>
       </div>
       <div class="stat-item">
@@ -393,7 +393,7 @@
         <div class="stat-label">Sprint Active</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">11</div>
+        <div class="stat-value">12</div>
         <div class="stat-label">Completed</div>
       </div>
       <div class="stat-item">
@@ -509,10 +509,31 @@
             <span class="column-icon">✅</span>
             Live
           </div>
-          <div class="column-count">11 tasks</div>
+          <div class="column-count">12 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="021" data-priority="high" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#021</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Publishing System Debug - Articles Not Displaying</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ RESOLVED: Debugged scrape→approve→publish workflow. Root cause: corrupted .next build cache causing 500 errors + empty approved queue. Fixed by cleaning .next directory and rebuilding. Verified full pipeline: articles scrape to pending, approve moves to approved queue, publish creates MDX in content/posts, home page renders correctly. Auto-generation of index.mdx and sitemap.xml confirmed working.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Syntax]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
           <div class="card" data-id="015" data-priority="high" data-type="feature">
             <div class="card-header">
               <div class="card-meta">
