@@ -42,6 +42,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/config ./config
+COPY --from=builder --chown=nextjs:nodejs /app/content ./content
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
