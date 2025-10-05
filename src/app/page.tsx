@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import { config } from '@/lib/utils/config';
+import { PathResolver } from '@/lib/shared/paths';
 
 interface Post {
   title: string;
@@ -16,7 +17,7 @@ interface Post {
 }
 
 async function getPosts(): Promise<Post[]> {
-  const contentDir = path.join(process.cwd(), 'content', 'posts');
+  const contentDir = PathResolver.postsDir;
 
   if (!fs.existsSync(contentDir)) {
     return [];
