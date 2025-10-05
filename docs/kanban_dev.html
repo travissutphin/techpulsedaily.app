@@ -385,15 +385,15 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-value">6</div>
+        <div class="stat-value">13</div>
         <div class="stat-label">Total Tasks</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">0</div>
+        <div class="stat-value">1</div>
         <div class="stat-label">Sprint Active</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">5</div>
+        <div class="stat-value">10</div>
         <div class="stat-label">Completed</div>
       </div>
       <div class="stat-item">
@@ -410,10 +410,49 @@
             <span class="column-icon">📋</span>
             Backlog
           </div>
-          <div class="column-count">4 tasks</div>
+          <div class="column-count">2 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_BACKLOG_START -->
+          <div class="card" data-id="016" data-priority="medium" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#016</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Phase 4: Custom Domain Setup (Optional)</h4>
+            <p class="card-description">Add custom domain in Railway dashboard, update DNS CNAME records (@ and www to Railway), wait for DNS propagation, verify SSL auto-provision. ~10 min.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="018" data-priority="low" data-type="docs">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#018</span>
+                <span class="card-type type-docs">Docs</span>
+              </div>
+              <span class="card-priority priority-low">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Phase 6: Ongoing Workflow Documentation</h4>
+            <p class="card-description">Document new deployment workflow: develop locally → git push → auto-deploy (30-60s). Document rollback process via Railway dashboard. Update team onboarding docs.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Codey]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
           <!-- KANBAN_BACKLOG_END -->
         </div>
       </div>
@@ -425,10 +464,30 @@
             <span class="column-icon">🚀</span>
             Sprint
           </div>
-          <div class="column-count">0 tasks</div>
+          <div class="column-count">1 task</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_SPRINT_START -->
+          <div class="card" data-id="015" data-priority="high" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#015</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Phase 3: Railway Production Deployment</h4>
+            <span class="card-status status-in-progress">🔄 IN PROGRESS</span>
+            <p class="card-description">✅ DEPLOYED: Railway auto-rebuild triggered from GitHub push (commit e958f37). New sources.json with AI coding/automation focus, API cleanup, and publisher refactoring deployed. Monitoring deployment status...</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [DeploymentTeam]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
           <!-- KANBAN_SPRINT_END -->
         </div>
       </div>
@@ -459,26 +518,6 @@
         </div>
         <div class="column-content">
           <!-- KANBAN_STAGED_START -->
-          <div class="card" data-id="008" data-priority="high" data-type="bug">
-            <div class="card-header">
-              <div class="card-meta">
-                <span class="card-id">#008</span>
-                <span class="card-type type-bug">Bug</span>
-              </div>
-              <span class="card-priority priority-high">
-                <i class="fas fa-circle"></i>
-              </span>
-            </div>
-            <h4 class="card-title">Claude API Key Configuration</h4>
-            <span class="card-status status-completed">✅ QA APPROVED</span>
-            <p class="card-description">✅ VERIFIED: All 5 test cases passed. End-to-end API integration confirmed operational. Error handling verified. Ready for production deployment.</p>
-            <div class="card-footer">
-              <span class="card-assignee">
-                <i class="fas fa-user"></i> [Travis]
-              </span>
-              <span class="card-date">2025-09-29</span>
-            </div>
-          </div>
           <!-- KANBAN_STAGED_END -->
         </div>
       </div>
@@ -490,10 +529,115 @@
             <span class="column-icon">✅</span>
             Live
           </div>
-          <div class="column-count">2 tasks</div>
+          <div class="column-count">10 tasks</div>
         </div>
         <div class="column-content">
           <!-- KANBAN_LIVE_START -->
+          <div class="card" data-id="013" data-priority="high" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#013</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Phase 1: Local Docker Testing</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ VERIFIED: Docker Desktop updated (WSL 2.6.1), multi-stage Dockerfile created, image built (292MB), container running on port 3000 with correct env vars (CLAUDE_API_KEY), config files included, all endpoints functional, scraping operational.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="014" data-priority="high" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#014</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Phase 2: Railway.com Setup & Deployment</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ DEPLOYED: Railway account created, GitHub auto-deploy configured, persistent volume mounted (/app/data), entrypoint script for permissions, environment variables set (CLAUDE_API_KEY, SITE_URL, NODE_ENV). Production URL: https://techpulsedailyapp-production.up.railway.app - All services operational.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Flow]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="008" data-priority="high" data-type="bug">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#008</span>
+                <span class="card-type type-bug">Bug</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Docker Environment Variables & API Integration</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ RESOLVED: Docker container rebuilt with CLAUDE_API_KEY environment variable. Scraping now functional (15 articles found and processed). Authentication errors resolved. All API integrations operational on both localhost and Railway.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Syntax]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="019" data-priority="high" data-type="feature">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#019</span>
+                <span class="card-type type-feature">Feature</span>
+              </div>
+              <span class="card-priority priority-high">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Content Sources Configuration - AI Coding Focus</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ CONFIGURED: Updated config/sources.json with 9 AI coding/automation subreddits (LocalLLaMA, ChatGPT, ClaudeAI, Replit, PromptEngineering, etc.), 7 quality RSS feeds (Anthropic, Replit, Simon Willison, Hugging Face, The Verge AI, etc.). Lowered score thresholds (10-30) for niche content discovery. Increased weights for priority topics (Claude: 1.4, Anthropic: 1.5).</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Syntax]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
+          <div class="card" data-id="020" data-priority="medium" data-type="refactor">
+            <div class="card-header">
+              <div class="card-meta">
+                <span class="card-id">#020</span>
+                <span class="card-type type-refactor">Refactor</span>
+              </div>
+              <span class="card-priority priority-medium">
+                <i class="fas fa-circle"></i>
+              </span>
+            </div>
+            <h4 class="card-title">Code Cleanup - Debug Logs & Path Handling</h4>
+            <span class="card-status status-completed">✅ COMPLETED</span>
+            <p class="card-description">✅ REFACTORED: Removed debug console.logs from articles API route. Refactored publisher.ts to use PathResolver for consistent path handling (contentDir, postsDir, publicDir). Updated sitemap.xml lastmod dates. Improved code maintainability and consistency.</p>
+            <div class="card-footer">
+              <span class="card-assignee">
+                <i class="fas fa-user"></i> [Syntax]
+              </span>
+              <span class="card-date">2025-10-05</span>
+            </div>
+          </div>
+
           <div class="card" data-id="006" data-priority="high" data-type="bug">
             <div class="card-header">
               <div class="card-meta">
