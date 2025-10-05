@@ -3,6 +3,7 @@ import path from 'path';
 import { Article } from './types';
 import { QueueManager } from './storage/queue';
 import { config } from './utils/config';
+import { PathResolver } from './shared/paths';
 
 export class Publisher {
   private queue: QueueManager;
@@ -10,7 +11,7 @@ export class Publisher {
 
   constructor() {
     this.queue = new QueueManager();
-    this.contentDir = path.join(process.cwd(), 'content', 'posts');
+    this.contentDir = PathResolver.postsDir;
     this.ensureContentDir();
   }
 
@@ -229,7 +230,7 @@ ${post.description}
 [View All Articles →](/archive)
 `;
 
-    const indexPath = path.join(process.cwd(), 'content', 'index.mdx');
+    const indexPath = path.join(PathResolver.contentDir, 'index.mdx');
     fs.writeFileSync(indexPath, indexContent);
   }
 
@@ -254,7 +255,7 @@ ${post.description}
   </url>`).join('')}
 </urlset>`;
 
-    const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+    const sitemapPath = path.join(PathResolver.publicDir, 'sitemap.xml');
     fs.writeFileSync(sitemapPath, sitemap);
   }
 

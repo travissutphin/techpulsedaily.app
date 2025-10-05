@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { QueueManager } from '@/lib/storage/queue';
 import { requireAuth } from '@/lib/auth/authMiddleware';
-import { PathResolver } from '@/lib/shared/paths';
 
 const queue = new QueueManager();
 
@@ -10,15 +9,11 @@ export const GET = requireAuth(async (request: NextRequest) => {
     const { searchParams } = new URL(request.url);
     const type = searchParams.get('type') || 'pending';
 
-    console.log('Articles API called - type:', type);
-    console.log('Queue path:', PathResolver.pendingQueueDir);
-
     let articles;
     if (type === 'published') {
       articles = await queue.getPublishedArticles();
     } else {
       articles = await queue.getPendingArticles();
-      console.log('getPendingArticles returned:', articles.length, 'articles');
     }
 
     return NextResponse.json({ articles });
