@@ -7,6 +7,16 @@ mkdir -p /app/data/queue/approved
 mkdir -p /app/data/queue/rejected
 mkdir -p /app/data/published
 
+# Create content directories on volume (for published articles)
+mkdir -p /app/data/content/posts
+
+# Create symlink from /app/content to /app/data/content (volume-backed)
+# This ensures published MDX files persist on Railway volume
+if [ ! -L /app/content ]; then
+  rm -rf /app/content
+  ln -sf /app/data/content /app/content
+fi
+
 # Change ownership to nextjs user
 chown -R nextjs:nodejs /app/data
 
