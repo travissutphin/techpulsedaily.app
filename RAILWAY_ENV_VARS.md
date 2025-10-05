@@ -10,10 +10,10 @@
 # Anthropic API Key (REQUIRED)
 CLAUDE_API_KEY=sk-ant-api03-xxx
 
-# Content Directory - Points to volume storage (REQUIRED FOR PERSISTENCE)
+# Content Directory - Points to volume storage (REQUIRED FOR CMS WORKFLOW)
 CONTENT_DIR=/app/data/content
 
-# Data Directory - Already defaults to /app/data but explicit is better
+# Data Directory - Points to volume storage (REQUIRED FOR CMS WORKFLOW)
 DATA_DIR=/app/data
 
 # Site Configuration
