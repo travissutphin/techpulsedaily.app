@@ -42,16 +42,12 @@ data/logs/
 # queue files - temporary processing data
 data/queue/
 
-# content files
-/*.md
-!README.md
-# Exclude published articles (stored on Railway volume, not in git)
-/content/**/*.mdx
-/data/*.json
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# project documentation with sensitive info
+CLAUDE.md
