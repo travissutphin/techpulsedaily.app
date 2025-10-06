@@ -44,6 +44,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/config ./config
 COPY --from=builder --chown=nextjs:nodejs /app/content ./content
 
+# Create data directories for persistence (will be mounted as volume in production)
+RUN mkdir -p /app/data/queue/pending /app/data/queue/approved /app/data/queue/rejected /app/data/queue/published && \
+    chown -R nextjs:nodejs /app/data
+
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
