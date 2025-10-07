@@ -3,9 +3,8 @@ import path from 'path';
 import Link from 'next/link';
 import { PathResolver } from '@/lib/shared/paths';
 
-// Force dynamic rendering - don't cache this page
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Revalidate every 60 seconds instead of force-dynamic (which causes crashes)
+export const revalidate = 60;
 
 interface Post {
   title: string;
