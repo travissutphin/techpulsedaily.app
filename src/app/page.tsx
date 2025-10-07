@@ -3,8 +3,8 @@ import path from 'path';
 import Link from 'next/link';
 import { PathResolver } from '@/lib/shared/paths';
 
-// Revalidate every 60 seconds instead of force-dynamic (which causes crashes)
-export const revalidate = 60;
+// Revalidate every 10 seconds for faster article updates in Docker
+export const revalidate = 10;
 
 interface Post {
   title: string;
