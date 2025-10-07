@@ -3,9 +3,10 @@ import path from 'path';
 import Link from 'next/link';
 import { PathResolver } from '@/lib/shared/paths';
 
-// Use dynamic rendering to avoid ISR cache from Docker build (before volume mount)
-// ISR pre-renders with 0 articles during Docker build, then serves stale cache even after MDX files exist
-export const dynamic = 'force-dynamic';
+// Use revalidate=0 to force fresh data on every request
+// This bypasses the Docker build cache issue where homepage pre-renders with 0 articles
+// before the Railway volume mounts with the actual MDX files
+export const revalidate = 0;
 
 interface Post {
   title: string;
