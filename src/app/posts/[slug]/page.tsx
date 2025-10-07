@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { config } from '@/lib/utils/config';
+import { PathResolver } from '@/lib/shared/paths';
 
 interface PostData {
   title: string;
@@ -20,8 +21,8 @@ interface PostData {
 }
 
 async function getPost(slug: string): Promise<PostData | null> {
-  const contentDir = path.join(process.cwd(), 'content', 'posts');
-  
+  const contentDir = PathResolver.postsDir;
+
   if (!fs.existsSync(contentDir)) {
     return null;
   }
@@ -300,8 +301,8 @@ function extractFAQs(content: string) {
 }
 
 export async function generateStaticParams() {
-  const contentDir = path.join(process.cwd(), 'content', 'posts');
-  
+  const contentDir = PathResolver.postsDir;
+
   if (!fs.existsSync(contentDir)) {
     return [];
   }
