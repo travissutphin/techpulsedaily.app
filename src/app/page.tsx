@@ -267,7 +267,20 @@ function getSourceCode(source: string) {
 
 export default async function HomePage() {
   const posts = await getRecentPosts();
-  const siteConfig = config.getConfig('site') as any as any;
+
+  // Safely get site config with fallback
+  let siteConfig: any;
+  try {
+    siteConfig = config.getConfig('site') as any;
+  } catch (error) {
+    console.error('Failed to load site config:', error);
+    siteConfig = {
+      site: {
+        name: 'TechPulse Daily',
+        url: process.env.SITE_URL || 'https://techpulsedaily.app'
+      }
+    };
+  }
 
   return (
     <div className="min-h-screen bg-tp-background">
