@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
-import { config } from '@/lib/utils/config';
 import { PathResolver } from '@/lib/shared/paths';
 
 // Force dynamic rendering - don't cache this page
@@ -268,19 +267,13 @@ function getSourceCode(source: string) {
 export default async function HomePage() {
   const posts = await getRecentPosts();
 
-  // Safely get site config with fallback
-  let siteConfig: any;
-  try {
-    siteConfig = config.getConfig('site') as any;
-  } catch (error) {
-    console.error('Failed to load site config:', error);
-    siteConfig = {
-      site: {
-        name: 'TechPulse Daily',
-        url: process.env.SITE_URL || 'https://techpulsedaily.app'
-      }
-    };
-  }
+  // Use environment variable for site config to avoid file system reads in dynamic mode
+  const siteConfig = {
+    site: {
+      name: 'TechPulse Daily',
+      url: process.env.SITE_URL || 'https://techpulsedaily.app'
+    }
+  };
 
   return (
     <div className="min-h-screen bg-tp-background">
