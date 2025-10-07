@@ -3,8 +3,9 @@ import path from 'path';
 import Link from 'next/link';
 import { PathResolver } from '@/lib/shared/paths';
 
-// Revalidate every 10 seconds for faster article updates in Docker
-export const revalidate = 10;
+// Use dynamic rendering to avoid ISR cache from Docker build (before volume mount)
+// ISR pre-renders with 0 articles during Docker build, then serves stale cache even after MDX files exist
+export const dynamic = 'force-dynamic';
 
 interface Post {
   title: string;
