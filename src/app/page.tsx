@@ -4,6 +4,10 @@ import Link from 'next/link';
 import { config } from '@/lib/utils/config';
 import { PathResolver } from '@/lib/shared/paths';
 
+// Force dynamic rendering - don't cache this page
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface Post {
   title: string;
   description: string;
